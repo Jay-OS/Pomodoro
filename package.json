@@ -58,10 +58,12 @@
     "workbox-webpack-plugin": "5.1.4"
   },
   "dependencies": {
+    "aphrodite": "^2.4.0",
     "bfj": "^7.0.2",
     "camelcase": "^6.1.0",
     "dotenv": "8.2.0",
     "dotenv-expand": "5.1.0",
+    "formik": "^2.2.9",
     "fs-extra": "^9.0.1",
     "identity-obj-proxy": "3.0.0",
     "prompts": "2.4.0",
