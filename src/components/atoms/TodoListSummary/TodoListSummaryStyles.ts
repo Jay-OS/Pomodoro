@@ -24,7 +24,7 @@ const todoListSummaryStyles: styleMapProperties = {
     },
     summaryItemValue: {
         fontWeight: 'bold',
-    }
+    },
 };
 
 export default StyleSheet.create(todoListSummaryStyles);

@@ -17,11 +17,11 @@ const appStyles: styleMapProperties = {
         color: colours.BRAND_SECONDARY,
         [responsiveBreakpoints.TABLET.mediaQuery]: {
             width: '85%',
-            height: '90%'
+            height: '90%',
         },
         [responsiveBreakpoints.DESKTOP.mediaQuery]: {
-            width: '50%'
-        }
+            width: '50%',
+        },
     },
 };
 

@@ -25,8 +25,8 @@ const siteHeaderStyles: styleMapProperties = {
     },
     credit: {
         textAlign: 'right',
-        color: colours.BRAND_SECONDARY
-    }
+        color: colours.BRAND_SECONDARY,
+    },
 };
 
 export default StyleSheet.create(siteHeaderStyles);

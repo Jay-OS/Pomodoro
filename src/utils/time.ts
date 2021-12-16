@@ -1,7 +1,7 @@
 export const minutesToHoursAndMinutes = (minutes: number) => {
     const hoursAndMinutes = {
         hours: Math.floor(minutes / 60),
-        minutes: minutes % 60
+        minutes: minutes % 60,
     };
 
     return hoursAndMinutes;

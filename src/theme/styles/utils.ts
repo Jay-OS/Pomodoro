@@ -5,7 +5,7 @@ const utils: styleMapProperties = {
         position: 'absolute',
         top: '50%',
         left: '50%',
-        transform: 'translate(-50%, -50%)'
+        transform: 'translate(-50%, -50%)',
     },
     CONTAINER_STYLES: {
         borderRadius: '10px',
