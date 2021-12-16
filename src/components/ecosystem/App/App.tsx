@@ -5,6 +5,7 @@ import appStyles from './AppStyles';
 
 import Timer from '../../molecules/Timer'
 import TodoList from '../../molecules/TodoList'
+import SiteHeader from '../../atoms/SiteHeader';
 
 import defaultTimesInMinutes, { defaultTimesInMinutesType } from '../../../constants/defaultTimesInMinutes';
 
@@ -26,7 +27,7 @@ const App: React.FC<{}> = () => {
       ...todoList
     ];
     for (let index = 1; index < newTodoList.length; index += 2) {
-      const breakType = index % 8 === 0 ? longBreak : shortBreak;
+      const breakType = (index + 1) % 8 === 0 ? longBreak : shortBreak;
       newTodoList.splice(index, 0, breakType);
     }
 
@@ -34,8 +35,8 @@ const App: React.FC<{}> = () => {
   }
   useEffect(createTodoListWithBreaks, [todoList]);
 
-  const addTodoItem = (title: string, description: string) => {
-    const pomodoro = createPomodoro(title, description);
+  const addTodoItem = (values: any) => {
+    const pomodoro = createPomodoro(values.pomodoroTitle, values.pomodoroDescription);
     const newTodoList = [
       ...todoList,
       pomodoro
@@ -50,6 +51,7 @@ const App: React.FC<{}> = () => {
 
   return (
     <div className={css(appStyles.panel)}>
+      <SiteHeader />
       <Timer />
       <TodoList
         listItems={todoListWithBreaks}

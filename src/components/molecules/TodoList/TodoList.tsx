@@ -12,13 +12,13 @@ interface ITodoList {
     itemDurations: defaultTimesInMinutesType,
     currentItemIndex: number | undefined,
     currentTimerMs: number,
-    addTodoItem: (title: string, description: string) => void
+    addTodoItem: (values: any) => void
 }
 
 const TodoList: React.FC<ITodoList> = (props) => {
   return (
     <div>
-        TodoList
+        <h1>'To do' List</h1>
         <ITodoItemForm addTodoItem={props.addTodoItem} />
         <div>
             <TodoListSummary

@@ -7,6 +7,10 @@ const utils: styleMapProperties = {
         left: '50%',
         transform: 'translate(-50%, -50%)'
     },
+    CONTAINER_STYLES: {
+        borderRadius: '10px',
+        padding: '1rem',
+    },
 };
 
 export default utils;
