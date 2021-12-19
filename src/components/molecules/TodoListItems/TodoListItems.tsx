@@ -2,28 +2,22 @@ import React from 'react';
 
 import TodoListItem from '../../atoms/TodoListItem';
 
-import { todoItemShape } from '../../../entities/todoItems';
-import { defaultTimesInMinutesType } from '../../../constants/defaultTimesInMinutes';
+import { todoItemShape } from '../../../domain/entities/todoItems';
 
 interface ITodoListItems {
     listItems: todoItemShape[];
-    itemDurations: defaultTimesInMinutesType;
     currentItemIndex: number | undefined;
-    currentTimerMs: number;
 }
 
-const TodoListItems: React.FC<ITodoListItems> = (props) => {
-    const { listItems, itemDurations, currentItemIndex, currentTimerMs } =
-        props;
+const TodoListItems = ({ listItems, currentItemIndex }: ITodoListItems) => {
     return (
         <>
             {!!listItems && listItems.length > 0 ? (
                 listItems.map((value, index) => (
                     <TodoListItem
                         todoItem={value}
-                        itemDurations={itemDurations}
                         isCurrentItem={index === currentItemIndex}
-                        currentTimerMs={currentTimerMs}
+                        key={value.id}
                     />
                 ))
             ) : (

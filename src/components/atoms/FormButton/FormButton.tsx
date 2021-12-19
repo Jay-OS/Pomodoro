@@ -10,7 +10,7 @@ interface FormButtonProps {
     buttonType: buttonTypes;
 }
 
-const FormButton: React.FC<FormButtonProps> = (props) => {
+const FormButton = (props: FormButtonProps) => {
     const { errors, touched } = useFormikContext();
 
     const errorKeys = Object.keys(errors);

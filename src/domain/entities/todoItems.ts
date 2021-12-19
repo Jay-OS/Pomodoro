@@ -4,6 +4,7 @@ export enum todoItemTypes {
     LONG_BREAK = 'LONG_BREAK',
 }
 export interface todoItemShape {
+    id?: string,
     itemType: todoItemTypes;
     title: string;
     description: string;
@@ -29,6 +30,7 @@ export const createPomodoro = (
     title: string,
     description: string
 ): todoItemShape => ({
+    id: Date.now().toString(16),
     itemType: todoItemTypes.POMODORO,
     title: title,
     description: description,

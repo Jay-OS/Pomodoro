@@ -1,23 +1,23 @@
 import React from 'react';
-import { Formik, Form } from 'formik';
+import { Formik, Form, FormikHelpers } from 'formik';
 import { css } from 'aphrodite/no-important';
 import * as Yup from 'yup';
 
 import TextInput from '../TextInput';
-import createPomodoroFormFields from '../../../constants/forms/formFields/createPomodoroFormFields';
+import createPomodoroFormFields, { PomodoroFormFieldValues, PomodoroFormFieldNames } from '../../../constants/forms/formFields/createPomodoroFormFields';
 
 import FormButton from '../../atoms/FormButton';
 import { buttonTypes } from '../../../constants/forms/buttons';
 
 import todoItemFormStyles from './TodoItemFormStyles';
 interface ITodoItemForm {
-    addTodoItem: (values: any) => void;
+    onSubmit: (values: PomodoroFormFieldValues, helpers: FormikHelpers<PomodoroFormFieldValues>) => void;
 }
 
-const TodoItemForm: React.FC<ITodoItemForm> = (props) => {
+const TodoItemForm = ({ onSubmit }: ITodoItemForm) => {
     const initialValues = {
-        [createPomodoroFormFields.title.props.name]: '',
-        [createPomodoroFormFields.description.props.name]: '',
+        [PomodoroFormFieldNames.POMODORO_TITLE]: '',
+        [PomodoroFormFieldNames.POMODORO_DESCRIPTION]: '',
     };
 
     let validation = {};
@@ -39,10 +39,10 @@ const TodoItemForm: React.FC<ITodoItemForm> = (props) => {
         <Formik
             initialValues={initialValues}
             validationSchema={Yup.object().shape(validation)}
-            onSubmit={props.addTodoItem}
+            onSubmit={onSubmit}
         >
             <Form className={css(todoItemFormStyles.todoFormContainer)}>
-                <h2>Add a new 'to do' item</h2>
+                <h2 className={css(todoItemFormStyles.H2)}>Add a new 'to do' item</h2>
                 <TextInput {...createPomodoroFormFields.title.props} />
                 <TextInput {...createPomodoroFormFields.description.props} />
                 <FormButton buttonType={buttonTypes.ADD_BUTTON} />

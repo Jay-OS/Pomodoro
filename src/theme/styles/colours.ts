@@ -7,10 +7,12 @@ const colours: { [property: string]: string } = {
 
     BORDER_COLOUR: '#B3AAA1',
 
-    GREY_BACKGROUND: '#CFC9C3',
+    GREY_BACKGROUND: '#E6E1DD',
     SHORTBREAK_BACKGROUND: '#7ABC68',
     LONGBREAK_BACKGROUND: '#2E973A',
     POMODORO_BACKGROUND: '#695DCF',
+
+    TEXT_COLOUR: '#4A4035',
 };
 
 export default colours;

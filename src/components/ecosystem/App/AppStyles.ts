@@ -14,7 +14,7 @@ const appStyles: styleMapProperties = {
         boxSizing: 'border-box',
         ...utils.CENTER_ELEMENT,
         fontFamily: [fontFaces.openSansRegular, 'sans-serif'],
-        color: colours.BRAND_SECONDARY,
+        color: colours.TEXT_COLOUR,
         [responsiveBreakpoints.TABLET.mediaQuery]: {
             width: '85%',
             height: '90%',

@@ -1,4 +1,4 @@
-import { todoItemTypes } from '../entities/todoItems';
+import { todoItemTypes } from '../domain/entities/todoItems';
 
 export type defaultTimesInMinutesType = {
     [key in todoItemTypes]: number;

@@ -2,11 +2,21 @@ import { formFieldShape } from './formFieldShape';
 
 import * as Yup from 'yup';
 
+export enum PomodoroFormFieldNames {
+    POMODORO_TITLE = 'pomodoroTitle',
+    POMODORO_DESCRIPTION = 'pomodoroDescription',
+};
+
+export interface PomodoroFormFieldValues {
+    [PomodoroFormFieldNames.POMODORO_TITLE]: string,
+    [PomodoroFormFieldNames.POMODORO_DESCRIPTION]: string
+}
+
 const createPomodoroFormFields: { readonly [type: string]: formFieldShape } = {
     title: {
         props: {
-            name: 'pomodoroTitle',
-            id: 'pomodoroTitle',
+            name: PomodoroFormFieldNames.POMODORO_TITLE,
+            id: PomodoroFormFieldNames.POMODORO_TITLE,
             placeholder: 'A short description of your task',
             type: 'text',
             label: 'Title',
@@ -18,8 +28,8 @@ const createPomodoroFormFields: { readonly [type: string]: formFieldShape } = {
     },
     description: {
         props: {
-            name: 'pomodoroDescription',
-            id: 'pomodoroDescription',
+            name: PomodoroFormFieldNames.POMODORO_DESCRIPTION,
+            id: PomodoroFormFieldNames.POMODORO_DESCRIPTION,
             placeholder: 'A full description of your task',
             type: 'text',
             label: 'Description',

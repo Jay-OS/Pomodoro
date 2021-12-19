@@ -1,7 +1,7 @@
 import React from 'react';
 import { css } from 'aphrodite/no-important';
 
-import { todoItemShape } from '../../../entities/todoItems';
+import { todoItemShape } from '../../../domain/entities/todoItems';
 import { defaultTimesInMinutesType } from '../../../constants/defaultTimesInMinutes';
 
 import todoListItemStyles from './TodoListItemStyles';
@@ -13,7 +13,7 @@ interface ITodoListItem {
     currentTimerMs: number;
 }
 
-const TodoListItem: React.FC<ITodoListItem> = (props) => {
+const TodoListItem = (props: ITodoListItem) => {
     return (
         <div
             className={css(
@@ -22,10 +22,10 @@ const TodoListItem: React.FC<ITodoListItem> = (props) => {
             )}
         >
             <span>
-                <h3>{props.todoItem.title}</h3>
+                <h3 className={css(todoListItemStyles.H3)}>{props.todoItem.title}</h3>
                 <p>{props.todoItem.description}</p>
             </span>
-            <span>{props.itemDurations[props.todoItem.itemType]}mins</span>
+            <span><span>{props.itemDurations[props.todoItem.itemType]}</span><span>mins</span></span>
         </div>
     );
 };

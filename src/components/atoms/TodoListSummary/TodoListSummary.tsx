@@ -3,7 +3,7 @@ import { css } from 'aphrodite/no-important';
 
 import { minutesToHoursAndMinutesString } from '../../../utils/time';
 
-import { todoItemShape, todoItemTypes } from '../../../entities/todoItems';
+import { todoItemShape, todoItemTypes } from '../../../domain/entities/todoItems';
 import { defaultTimesInMinutesType } from '../../../constants/defaultTimesInMinutes';
 
 import todoListSummaryStyles from './TodoListSummaryStyles';
@@ -15,7 +15,7 @@ interface ITodoListSummary {
     currentTimerMs: number;
 }
 
-const TodoListSummary: React.FC<ITodoListSummary> = (props) => {
+const TodoListSummary = (props: ITodoListSummary) => {
     const { listItems, itemDurations } = props;
 
     const todoCount = listItems.filter(

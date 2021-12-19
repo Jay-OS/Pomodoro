@@ -11,3 +11,7 @@ export const minutesToHoursAndMinutesString = (minutes: number) => {
     const hoursAndMinutes = minutesToHoursAndMinutes(minutes);
     return `${hoursAndMinutes.hours}h ${hoursAndMinutes.minutes}m`;
 };
+
+export const minutesToMilliseconds = (minutes: number) => {
+    return minutes * 60 * 1000;
+};

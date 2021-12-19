@@ -16,5 +16,5 @@ export interface individualPropertyConstants {
 }
 
 export interface fontFaceProperties {
-    readonly [styleName: string]: IFontFace;
+    readonly [styleName: string]: IFontFace & { fontDisplay: string };
 }
