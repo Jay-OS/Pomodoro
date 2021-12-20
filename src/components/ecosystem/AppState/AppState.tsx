@@ -29,6 +29,7 @@ const AppState: React.FC<{}> = ({ children }) => {
                 totalTimeMS: 0,
                 endTimeMS: 0,
                 isPaused: false,
+                hasEnded: false,
             }
         );
 

@@ -33,6 +33,7 @@ const AppStateContext = React.createContext<IAppState>(
             totalTimeMS: 0,
             endTimeMS: 0,
             isPaused: false,
+            hasEnded: false,
         },
     }
 );

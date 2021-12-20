@@ -5,6 +5,7 @@ export interface ITimerState {
     totalTimeMS: number;
     endTimeMS: number;
     isPaused: boolean;
+    hasEnded: boolean;
 };
 
 interface ITimer {
@@ -31,7 +32,9 @@ export class Timer implements ITimer {
 
     private advanceToPresent() {
         const currentTimeMS = new Date().getTime();
-        const timeRemainingMS = this.endTimeMS - currentTimeMS;
+        const timeRemainingMS = this.endTimeMS >= currentTimeMS
+            ? this.endTimeMS - currentTimeMS
+            : 0;
 
         this.lastUpdate = currentTimeMS;
         this.ellapsedMS = this.totalTimeMS - timeRemainingMS;
@@ -66,6 +69,7 @@ export class Timer implements ITimer {
             totalTimeMS: this.totalTimeMS,
             endTimeMS: this.endTimeMS,
             isPaused: this.isPaused,
+            hasEnded: this.ellapsedMS >= this.totalTimeMS,
         };
         return timerState;
     }
