@@ -11,6 +11,9 @@ const utils: styleMapProperties = {
         borderRadius: '10px',
         padding: '1rem',
     },
+    NO_WRAP: {
+        whiteSpace: 'nowrap',
+    },
 };
 
 export default utils;

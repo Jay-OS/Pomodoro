@@ -1,6 +1,7 @@
 import { StyleSheet } from 'aphrodite/no-important';
 
 import colours from '../../../theme/styles/colours';
+import utils from '../../../theme/styles/utils';
 
 import { styleMapProperties } from '../../../theme/styles/objectMaps';
 
@@ -18,14 +19,15 @@ const siteHeaderStyles: styleMapProperties = {
         borderRadius: '2px',
     },
     siteHeaderColumn: {
-        display: 'flex',
-        flexDirection: 'column',
         flexBasis: '100%',
         flex: 1,
     },
     credit: {
         textAlign: 'right',
         color: colours.BRAND_SECONDARY,
+    },
+    noWrap: {
+        ...utils.NO_WRAP,
     },
 };
 

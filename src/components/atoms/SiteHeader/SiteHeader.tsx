@@ -31,7 +31,7 @@ const SiteHeader = () => (
                 siteHeaderStyles.credit
             )}
         >
-            by Jay Oldham-Smith
+            by Jay <span className={css(siteHeaderStyles.noWrap)}>Oldham-Smith</span>
         </span>
     </div>
 );
