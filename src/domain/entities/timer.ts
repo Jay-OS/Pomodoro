@@ -1,25 +1,29 @@
 import { minutesToMilliseconds } from '../../utils/time';
+import config from '../../constants/config';
 
-export interface ITimerState {
+export interface ICurrentTimerState {
     ellapsedMS: number;
     totalTimeMS: number;
     endTimeMS: number;
     isPaused: boolean;
+    hasStarted: boolean;
     hasEnded: boolean;
 };
 
 interface ITimer {
-    togglePause: () => ITimerState;
-    update: () => ITimerState;
-    getCurrentState: () => ITimerState;
+    start: () => void;
+    togglePause: () => ICurrentTimerState;
+    update: () => ICurrentTimerState;
+    getCurrentState: () => ICurrentTimerState;
 };
 
 export class Timer implements ITimer {
-    private lastUpdate = 0;
-    private ellapsedMS = 0;
-    private totalTimeMS = 0;
-    private endTimeMS = 0;
-    private isPaused = true;
+    private lastUpdate: number = 0;
+    private ellapsedMS: number = 0;
+    private totalTimeMS: number = 0;
+    private endTimeMS: number = 0;
+    private isPaused: boolean = false;
+    private hasStarted: boolean = false;
 
     constructor(durationMins: number) {
         const currentTimeMS = new Date().getTime();
@@ -32,20 +36,23 @@ export class Timer implements ITimer {
 
     private advanceToPresent() {
         const currentTimeMS = new Date().getTime();
-        const timeRemainingMS = this.endTimeMS >= currentTimeMS
-            ? this.endTimeMS - currentTimeMS
-            : 0;
-
         this.lastUpdate = currentTimeMS;
-        this.ellapsedMS = this.totalTimeMS - timeRemainingMS;
+        this.ellapsedMS = this.ellapsedMS + config.timerRefreshIntervalMS < this.totalTimeMS
+            ? this.ellapsedMS + config.timerRefreshIntervalMS
+            : this.totalTimeMS;
     }
 
     private maintainPause() {
-        const currentTimeMS = new Date().getTime();
-        const ellapsedTimeSinceUpdateMS = currentTimeMS - this.lastUpdate;
+        this.endTimeMS += config.timerRefreshIntervalMS;
+        this.lastUpdate = new Date().getTime();
+    }
 
-        this.endTimeMS += ellapsedTimeSinceUpdateMS;
-        this.lastUpdate = currentTimeMS;
+    start() {
+        if (!this.hasStarted) {
+            const currentTimeMS = new Date().getTime();
+            this.endTimeMS = currentTimeMS + this.totalTimeMS;
+            this.hasStarted = true;
+        }
     }
 
     update() {
@@ -64,11 +71,12 @@ export class Timer implements ITimer {
     }
 
     getCurrentState() {
-        const timerState: ITimerState = {
+        const timerState: ICurrentTimerState = {
             ellapsedMS: this.ellapsedMS,
             totalTimeMS: this.totalTimeMS,
             endTimeMS: this.endTimeMS,
             isPaused: this.isPaused,
+            hasStarted: this.hasStarted,
             hasEnded: this.ellapsedMS >= this.totalTimeMS,
         };
         return timerState;
