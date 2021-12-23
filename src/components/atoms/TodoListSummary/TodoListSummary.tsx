@@ -3,47 +3,16 @@ import { css } from 'aphrodite/no-important';
 
 import { minutesToHoursAndMinutesString } from '../../../utils/time';
 
-import { todoItemShape, todoItemTypes } from '../../../domain/entities/todoItems';
-import { defaultTimesInMinutesType } from '../../../constants/defaultTimesInMinutes';
-
 import todoListSummaryStyles from './TodoListSummaryStyles';
 
 interface ITodoListSummary {
-    listItems: todoItemShape[];
-    itemDurations: defaultTimesInMinutesType;
-    currentItemIndex: number | undefined;
-    currentTimerMs: number;
+    todoCount: number;
+    completedTodoCount: number;
+    totalTimeLeft: number;
+    totalTodoTimeLeft: number;
 }
 
-const TodoListSummary = (props: ITodoListSummary) => {
-    const { listItems, itemDurations } = props;
-
-    const todoCount = listItems.filter(
-        (value) => value.itemType === todoItemTypes.POMODORO
-    ).length;
-    const completedTodoCount = listItems.filter(
-        (value) =>
-            value.itemType === todoItemTypes.POMODORO &&
-            value.isComplete === true
-    ).length;
-
-    const totalTimeLeft = listItems
-        .filter((value) => value.isComplete === false)
-        .reduce(
-            (partialSum, item) => partialSum + itemDurations[item.itemType],
-            0
-        );
-    const totalTodoTimeLeft = listItems
-        .filter(
-            (value) =>
-                value.itemType === todoItemTypes.POMODORO &&
-                value.isComplete === false
-        )
-        .reduce(
-            (partialSum, item) => partialSum + itemDurations[item.itemType],
-            0
-        );
-
+const TodoListSummary = ({ todoCount, completedTodoCount, totalTimeLeft, totalTodoTimeLeft }: ITodoListSummary) => {
     return (
         <div className={css(todoListSummaryStyles.summaryContainer)}>
             <span className={css(todoListSummaryStyles.summaryItem)}>

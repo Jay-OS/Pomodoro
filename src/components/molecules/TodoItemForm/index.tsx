@@ -3,15 +3,15 @@ import { FormikHelpers } from "formik";
 
 import TodoItemForm from './TodoItemForm';
 
-import AppStateContext from '../../../domain/contexts/appState';
+import TodoListStateContext from '../../../domain/contexts/todoListState';
 
 import { PomodoroFormFieldValues } from '../../../constants/forms/formFields/createPomodoroFormFields';
 
 const TodoItemFormController = () => {
-    const appState = useContext(AppStateContext);
+    const todoListState = useContext(TodoListStateContext);
 
     const onSubmit = (values: PomodoroFormFieldValues, helpers: FormikHelpers<PomodoroFormFieldValues>) => {
-        appState.todoList.addItem(values);
+        todoListState.addItem(values);
         helpers.resetForm();
     };
 

@@ -2,7 +2,8 @@ import React, { useContext } from 'react';
 
 import TodoListItem from './TodoListItem';
 
-import AppStateContext from '../../../domain/contexts/appState';
+import TodoListStateContext from '../../../domain/contexts/todoListState';
+import TimerContext from '../../../domain/contexts/timerState';
 
 import { todoItemShape } from '../../../domain/entities/todoItems';
 
@@ -12,13 +13,14 @@ interface ITodoListItemController {
 }
 
 const TodoListItemController = (props: ITodoListItemController) => {
-    const appState = useContext(AppStateContext);
+    const todoListState = useContext(TodoListStateContext);
+    const timerState = useContext(TimerContext);
 
     return (
         <TodoListItem
             {...props}
-            itemDurations={appState.todoList.itemDurationsMins}
-            currentTimerMs={appState.currentTimer.ellapsedMS}
+            itemDurations={todoListState.itemDurationsMins}
+            currentTimerMs={timerState.currentTimer.ellapsedMS}
         />
     );
 }

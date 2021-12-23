@@ -2,15 +2,15 @@ import React, { useContext } from 'react';
 
 import TodoListItems from './TodoListItems';
 
-import AppStateContext from '../../../domain/contexts/appState';
+import TodoListStateContext from '../../../domain/contexts/todoListState';
 
 const TodoListItemsController = () => {
-    const appState = useContext(AppStateContext);
+    const todoListState = useContext(TodoListStateContext);
     
     return (
         <TodoListItems
-            listItems={appState.todoList.withBreaks}
-            currentItemIndex={appState.todoList.currentItemIndex}
+            listItems={todoListState.withBreaks}
+            currentItemIndex={todoListState.currentItemIndex}
         />
     );
 };

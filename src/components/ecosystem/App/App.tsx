@@ -3,7 +3,8 @@ import { css } from 'aphrodite/no-important';
 
 import appStyles from './AppStyles';
 
-import AppState from '../AppState';
+import TodoListState from '../TodoListState';
+import TimerState from '../TimerState';
 import Timer from '../../molecules/Timer';
 import TodoList from '../../molecules/TodoList';
 import SiteHeader from '../../atoms/SiteHeader';
@@ -11,10 +12,12 @@ import SiteHeader from '../../atoms/SiteHeader';
 const App = () => (
     <div className={css(appStyles.panel)}>
         <SiteHeader />
-        <AppState>
+        <TimerState>
             <Timer />
-            <TodoList />
-        </AppState>
+            <TodoListState>
+                <TodoList />
+            </TodoListState>
+        </TimerState>
     </div>
 );
 
