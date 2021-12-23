@@ -16,7 +16,7 @@ const timerStyles: styleMapProperties = {
     },
     timerDisplayValues: {
         fontSize: '3rem',
-        margin: '0 0.25rem 0 0'
+        margin: '0 0.25rem 0 0',
     },
 };
 

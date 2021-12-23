@@ -5,11 +5,11 @@ import * as Yup from 'yup';
 export enum PomodoroFormFieldNames {
     POMODORO_TITLE = 'pomodoroTitle',
     POMODORO_DESCRIPTION = 'pomodoroDescription',
-};
+}
 
 export interface PomodoroFormFieldValues {
-    [PomodoroFormFieldNames.POMODORO_TITLE]: string,
-    [PomodoroFormFieldNames.POMODORO_DESCRIPTION]: string
+    [PomodoroFormFieldNames.POMODORO_TITLE]: string;
+    [PomodoroFormFieldNames.POMODORO_DESCRIPTION]: string;
 }
 
 const createPomodoroFormFields: { readonly [type: string]: formFieldShape } = {

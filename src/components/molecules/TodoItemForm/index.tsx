@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { FormikHelpers } from "formik";
+import { FormikHelpers } from 'formik';
 
 import TodoItemForm from './TodoItemForm';
 
@@ -10,16 +10,15 @@ import { PomodoroFormFieldValues } from '../../../constants/forms/formFields/cre
 const TodoItemFormController = () => {
     const todoListState = useContext(TodoListStateContext);
 
-    const onSubmit = (values: PomodoroFormFieldValues, helpers: FormikHelpers<PomodoroFormFieldValues>) => {
+    const onSubmit = (
+        values: PomodoroFormFieldValues,
+        helpers: FormikHelpers<PomodoroFormFieldValues>
+    ) => {
         todoListState.addItem(values);
         helpers.resetForm();
     };
 
-    return (
-        <TodoItemForm
-            onSubmit={onSubmit}
-        />
-    );
+    return <TodoItemForm onSubmit={onSubmit} />;
 };
 
 export default TodoItemFormController;

@@ -4,7 +4,7 @@ export enum todoItemTypes {
     LONG_BREAK = 'LONG_BREAK',
 }
 export interface todoItemShape {
-    id?: string,
+    id?: string;
     itemType: todoItemTypes;
     title: string;
     description: string;

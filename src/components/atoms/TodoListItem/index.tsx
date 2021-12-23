@@ -23,6 +23,6 @@ const TodoListItemController = (props: ITodoListItemController) => {
             currentTimerMs={timerState.currentTimer.ellapsedMS}
         />
     );
-}
+};
 
 export default TodoListItemController;

@@ -1,27 +1,40 @@
 import React, { useEffect, useState } from 'react';
 
-import TodoListStateContext, { ITodoListState } from '../../../domain/contexts/todoListState';
+import TodoListStateContext, {
+    ITodoListState,
+} from '../../../domain/contexts/todoListState';
 
 import defaultTimesInMinutes, {
     defaultTimesInMinutesType,
 } from '../../../constants/defaultTimesInMinutes';
 
-import { PomodoroFormFieldValues, PomodoroFormFieldNames } from '../../../constants/forms/formFields/createPomodoroFormFields';
+import {
+    PomodoroFormFieldValues,
+    PomodoroFormFieldNames,
+} from '../../../constants/forms/formFields/createPomodoroFormFields';
 
-import { todoItemShape, createPomodoro } from '../../../domain/entities/todoItems';
+import {
+    todoItemShape,
+    createPomodoro,
+} from '../../../domain/entities/todoItems';
 
 import { getTodoListWithBreaks } from '../../../domain/entities/helpers/todoItemHelpers';
 
 interface ITodoListStateComponent {
-    createTimer: (durationMinutes: number) => void,
-};
+    createTimer: (durationMinutes: number) => void;
+}
 
-const TodoListState: React.FC<ITodoListStateComponent> = ({ children, createTimer }) => {
+const TodoListState: React.FC<ITodoListStateComponent> = ({
+    children,
+    createTimer,
+}) => {
     const [todoList, setTodoList] = useState<todoItemShape[]>([]);
-    const [todoListWithBreaks, setTodoListWithBreaks] =
-        useState<todoItemShape[]>([]);
-    const [currentTodoItemIndex, setCurrentTodoItemIndex] =
-        useState<number | undefined>();
+    const [todoListWithBreaks, setTodoListWithBreaks] = useState<
+        todoItemShape[]
+    >([]);
+    const [currentTodoItemIndex, setCurrentTodoItemIndex] = useState<
+        number | undefined
+    >();
 
     const [todoListItemDurations, setTodoListItemDurations] =
         useState<defaultTimesInMinutesType>(defaultTimesInMinutes);
@@ -43,7 +56,8 @@ const TodoListState: React.FC<ITodoListStateComponent> = ({ children, createTime
 
         if (newTodoList.length === 1) {
             setCurrentTodoItemIndex(0);
-            const timerDurationMins = todoListItemDurations[newTodoList[0].itemType];
+            const timerDurationMins =
+                todoListItemDurations[newTodoList[0].itemType];
             createTimer(timerDurationMins);
         }
     };
@@ -57,9 +71,11 @@ const TodoListState: React.FC<ITodoListStateComponent> = ({ children, createTime
         setDurations: setTodoListItemDurations,
     };
 
-    return <TodoListStateContext.Provider value={todoListState}>
-        {children}
-    </TodoListStateContext.Provider>;
+    return (
+        <TodoListStateContext.Provider value={todoListState}>
+            {children}
+        </TodoListStateContext.Provider>
+    );
 };
 
 export default TodoListState;

@@ -39,6 +39,6 @@ const millisecondsToSeconds = (milliseconds: number) => {
 const toTwoDigitString = (number: number) => {
     return number.toLocaleString('en-GB', {
         minimumIntegerDigits: 2,
-        useGrouping: false
+        useGrouping: false,
     });
 };

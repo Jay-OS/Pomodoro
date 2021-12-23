@@ -22,10 +22,15 @@ const TodoListItem = (props: ITodoListItem) => {
             )}
         >
             <span>
-                <h3 className={css(todoListItemStyles.H3)}>{props.todoItem.title}</h3>
+                <h3 className={css(todoListItemStyles.H3)}>
+                    {props.todoItem.title}
+                </h3>
                 <p>{props.todoItem.description}</p>
             </span>
-            <span><span>{props.itemDurations[props.todoItem.itemType]}</span><span>mins</span></span>
+            <span>
+                <span>{props.itemDurations[props.todoItem.itemType]}</span>
+                <span>mins</span>
+            </span>
         </div>
     );
 };

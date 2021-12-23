@@ -4,14 +4,20 @@ import { css } from 'aphrodite/no-important';
 import * as Yup from 'yup';
 
 import TextInput from '../TextInput';
-import createPomodoroFormFields, { PomodoroFormFieldValues, PomodoroFormFieldNames } from '../../../constants/forms/formFields/createPomodoroFormFields';
+import createPomodoroFormFields, {
+    PomodoroFormFieldValues,
+    PomodoroFormFieldNames,
+} from '../../../constants/forms/formFields/createPomodoroFormFields';
 
 import FormButton from '../../atoms/FormButton';
 import { buttonTypes } from '../../../constants/forms/buttons';
 
 import todoItemFormStyles from './TodoItemFormStyles';
 interface ITodoItemForm {
-    onSubmit: (values: PomodoroFormFieldValues, helpers: FormikHelpers<PomodoroFormFieldValues>) => void;
+    onSubmit: (
+        values: PomodoroFormFieldValues,
+        helpers: FormikHelpers<PomodoroFormFieldValues>
+    ) => void;
 }
 
 const TodoItemForm = ({ onSubmit }: ITodoItemForm) => {
@@ -42,7 +48,9 @@ const TodoItemForm = ({ onSubmit }: ITodoItemForm) => {
             onSubmit={onSubmit}
         >
             <Form className={css(todoItemFormStyles.todoFormContainer)}>
-                <h2 className={css(todoItemFormStyles.H2)}>Add a new 'to do' item</h2>
+                <h2 className={css(todoItemFormStyles.H2)}>
+                    Add a new 'to do' item
+                </h2>
                 <TextInput {...createPomodoroFormFields.title.props} />
                 <TextInput {...createPomodoroFormFields.description.props} />
                 <FormButton buttonType={buttonTypes.ADD_BUTTON} />

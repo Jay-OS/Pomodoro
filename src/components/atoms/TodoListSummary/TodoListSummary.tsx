@@ -12,7 +12,12 @@ interface ITodoListSummary {
     totalTodoTimeLeft: number;
 }
 
-const TodoListSummary = ({ todoCount, completedTodoCount, totalTimeLeft, totalTodoTimeLeft }: ITodoListSummary) => {
+const TodoListSummary = ({
+    todoCount,
+    completedTodoCount,
+    totalTimeLeft,
+    totalTodoTimeLeft,
+}: ITodoListSummary) => {
     return (
         <div className={css(todoListSummaryStyles.summaryContainer)}>
             <span className={css(todoListSummaryStyles.summaryItem)}>

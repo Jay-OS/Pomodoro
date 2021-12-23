@@ -8,14 +8,14 @@ export interface ICurrentTimerState {
     isPaused: boolean;
     hasStarted: boolean;
     hasEnded: boolean;
-};
+}
 
 interface ITimer {
     start: () => void;
     togglePause: () => ICurrentTimerState;
     update: () => ICurrentTimerState;
     getCurrentState: () => ICurrentTimerState;
-};
+}
 
 export class Timer implements ITimer {
     private lastUpdate: number = 0;
@@ -37,9 +37,10 @@ export class Timer implements ITimer {
     private advanceToPresent() {
         const currentTimeMS = new Date().getTime();
         this.lastUpdate = currentTimeMS;
-        this.ellapsedMS = this.ellapsedMS + config.timerRefreshIntervalMS < this.totalTimeMS
-            ? this.ellapsedMS + config.timerRefreshIntervalMS
-            : this.totalTimeMS;
+        this.ellapsedMS =
+            this.ellapsedMS + config.timerRefreshIntervalMS < this.totalTimeMS
+                ? this.ellapsedMS + config.timerRefreshIntervalMS
+                : this.totalTimeMS;
     }
 
     private maintainPause() {
@@ -58,7 +59,7 @@ export class Timer implements ITimer {
     update() {
         if (this.isPaused) {
             this.maintainPause();
-            return this.getCurrentState();;
+            return this.getCurrentState();
         }
 
         this.advanceToPresent();
@@ -84,7 +85,7 @@ export class Timer implements ITimer {
 }
 
 const exports: { instance: ITimer | null } = {
-    instance: null
+    instance: null,
 };
 
 export default exports;

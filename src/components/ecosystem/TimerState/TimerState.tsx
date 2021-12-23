@@ -1,22 +1,25 @@
 import React, { useState } from 'react';
 
-import TimerStateContext, { ITimerState } from '../../../domain/contexts/timerState';
-import timer, { Timer, ICurrentTimerState } from '../../../domain/entities/timer';
+import TimerStateContext, {
+    ITimerState,
+} from '../../../domain/contexts/timerState';
+import timer, {
+    Timer,
+    ICurrentTimerState,
+} from '../../../domain/entities/timer';
 
 import config from '../../../constants/config';
 
 const TimerState: React.FC<{}> = ({ children }) => {
     const [currentTimerState, setCurrentTimerState] =
-    useState<ICurrentTimerState>(
-        {
+        useState<ICurrentTimerState>({
             ellapsedMS: 0,
             totalTimeMS: 0,
             endTimeMS: 0,
             isPaused: false,
             hasStarted: false,
             hasEnded: false,
-        }
-    );
+        });
 
     let intervalId: NodeJS.Timeout | null = null;
 
@@ -45,8 +48,11 @@ const TimerState: React.FC<{}> = ({ children }) => {
         if (timer.instance && !currentTimerState.hasStarted) {
             timer.instance.start();
             updateTimer();
-            intervalId = setInterval(updateTimer, config.timerRefreshIntervalMS);
-        };
+            intervalId = setInterval(
+                updateTimer,
+                config.timerRefreshIntervalMS
+            );
+        }
     };
 
     const timerState: ITimerState = {
@@ -56,9 +62,11 @@ const TimerState: React.FC<{}> = ({ children }) => {
         startTimer: startTimer,
     };
 
-    return <TimerStateContext.Provider value={timerState}>
-        {children}
-    </TimerStateContext.Provider>;
+    return (
+        <TimerStateContext.Provider value={timerState}>
+            {children}
+        </TimerStateContext.Provider>
+    );
 };
 
 export default TimerState;

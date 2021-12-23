@@ -12,17 +12,15 @@ export interface ITodoListState {
     addItem: (values: any) => void;
     itemDurationsMins: defaultTimesInMinutesType;
     setDurations: (value: defaultTimesInMinutesType) => void;
-};
+}
 
-const TodoListStateContext = React.createContext<ITodoListState>(
-    {
-        original: [],
-        withBreaks: [],
-        currentItemIndex: 0,
-        addItem: (values: any) => {},
-        itemDurationsMins: defaultTimesInMinutes,
-        setDurations: (value: defaultTimesInMinutesType) => {},
-    }
-);
+const TodoListStateContext = React.createContext<ITodoListState>({
+    original: [],
+    withBreaks: [],
+    currentItemIndex: 0,
+    addItem: (values: any) => {},
+    itemDurationsMins: defaultTimesInMinutes,
+    setDurations: (value: defaultTimesInMinutesType) => {},
+});
 
 export default TodoListStateContext;
