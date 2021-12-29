@@ -1,23 +1,23 @@
 import React from 'react';
 
-import { todoItemShape } from '../entities/todoItems';
+import { ICurrentTodoListState } from '../entities/todoItemList';
+
 import defaultTimesInMinutes, {
     defaultTimesInMinutesType,
 } from '../../constants/defaultTimesInMinutes';
 
 export interface ITodoListState {
-    original: todoItemShape[];
-    withBreaks: todoItemShape[];
-    currentItemIndex: number | undefined;
+    currentListState: ICurrentTodoListState;
     addItem: (values: any) => void;
     itemDurationsMins: defaultTimesInMinutesType;
     setDurations: (value: defaultTimesInMinutesType) => void;
 }
 
 const TodoListStateContext = React.createContext<ITodoListState>({
-    original: [],
-    withBreaks: [],
-    currentItemIndex: 0,
+    currentListState: {
+        list: [],
+        currentItemIndex: undefined
+    },
     addItem: (values: any) => {},
     itemDurationsMins: defaultTimesInMinutes,
     setDurations: (value: defaultTimesInMinutesType) => {},

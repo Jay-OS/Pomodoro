@@ -2,33 +2,32 @@ import React from 'react';
 import { css } from 'aphrodite/no-important';
 
 import { todoItemShape } from '../../../domain/entities/todoItems';
-import { defaultTimesInMinutesType } from '../../../constants/defaultTimesInMinutes';
 
 import todoListItemStyles from './TodoListItemStyles';
 
 interface ITodoListItem {
     todoItem: todoItemShape;
-    itemDurations: defaultTimesInMinutesType;
+    remainingTimeMins: number;
     isCurrentItem: boolean;
-    currentTimerMs: number;
 }
 
-const TodoListItem = (props: ITodoListItem) => {
+const TodoListItem = ({ todoItem, remainingTimeMins, isCurrentItem }: ITodoListItem) => {
     return (
         <div
             className={css(
                 todoListItemStyles.todoListItemContainer,
-                todoListItemStyles[props.todoItem.itemType]
+                todoListItemStyles[todoItem.itemType],
+                isCurrentItem && todoListItemStyles.currentItem
             )}
         >
             <span>
                 <h3 className={css(todoListItemStyles.H3)}>
-                    {props.todoItem.title}
+                    {todoItem.title}
                 </h3>
-                <p>{props.todoItem.description}</p>
+                <p>{todoItem.description}</p>
             </span>
             <span>
-                <span>{props.itemDurations[props.todoItem.itemType]}</span>
+                <span>{remainingTimeMins}</span>
                 <span>mins</span>
             </span>
         </div>

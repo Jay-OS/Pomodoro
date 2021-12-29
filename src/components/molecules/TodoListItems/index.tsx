@@ -9,8 +9,7 @@ const TodoListItemsController = () => {
 
     return (
         <TodoListItems
-            listItems={todoListState.withBreaks}
-            currentItemIndex={todoListState.currentItemIndex}
+            listItems={todoListState.currentListState.list}
         />
     );
 };

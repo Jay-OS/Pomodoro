@@ -3,6 +3,10 @@ import React, { useEffect, useState } from 'react';
 import TodoListStateContext, {
     ITodoListState,
 } from '../../../domain/contexts/todoListState';
+import todoItemList, {
+    TodoItemList,
+    ICurrentTodoListState,
+} from '../../../domain/entities/todoItemList';
 
 import defaultTimesInMinutes, {
     defaultTimesInMinutesType,
@@ -10,15 +14,7 @@ import defaultTimesInMinutes, {
 
 import {
     PomodoroFormFieldValues,
-    PomodoroFormFieldNames,
 } from '../../../constants/forms/formFields/createPomodoroFormFields';
-
-import {
-    todoItemShape,
-    createPomodoro,
-} from '../../../domain/entities/todoItems';
-
-import { getTodoListWithBreaks } from '../../../domain/entities/helpers/todoItemHelpers';
 
 interface ITodoListStateComponent {
     createTimer: (durationMinutes: number) => void;
@@ -28,51 +24,40 @@ const TodoListState: React.FC<ITodoListStateComponent> = ({
     children,
     createTimer,
 }) => {
-    const [todoList, setTodoList] = useState<todoItemShape[]>([]);
-    const [todoListWithBreaks, setTodoListWithBreaks] = useState<
-        todoItemShape[]
-    >([]);
-    const [currentTodoItemIndex, setCurrentTodoItemIndex] = useState<
-        number | undefined
-    >();
-
+    const [todoListState, setTodoListState] =
+        useState<ICurrentTodoListState>({ list: [], currentItemIndex: undefined });
     const [todoListItemDurations, setTodoListItemDurations] =
         useState<defaultTimesInMinutesType>(defaultTimesInMinutes);
 
-    const createTodoListWithBreaks = () => {
-        const newTodoList = getTodoListWithBreaks(todoList);
-        setTodoListWithBreaks(newTodoList);
-    };
-    useEffect(createTodoListWithBreaks, [todoList]);
+    useEffect(() => {
+        todoItemList.instance = new TodoItemList();
+        setTodoListState(todoItemList.instance.getCurrentState());
+    }, []);
 
     const addTodoItem = (values: PomodoroFormFieldValues) => {
-        const pomodoro = createPomodoro(
-            values[PomodoroFormFieldNames.POMODORO_TITLE],
-            values[PomodoroFormFieldNames.POMODORO_DESCRIPTION]
-        );
-        const newTodoList = [...todoList, pomodoro];
+        if (!todoItemList.instance) {
+            todoItemList.instance = new TodoItemList();
+        }
+        const newState = todoItemList.instance.add(values);
 
-        setTodoList(newTodoList);
-
-        if (newTodoList.length === 1) {
-            setCurrentTodoItemIndex(0);
+        if (newState.list.length === 1) {
             const timerDurationMins =
-                todoListItemDurations[newTodoList[0].itemType];
+                todoListItemDurations[newState.list[0].itemType];
             createTimer(timerDurationMins);
         }
+
+        setTodoListState(newState);
     };
 
-    const todoListState: ITodoListState = {
-        original: todoList,
-        withBreaks: todoListWithBreaks,
-        currentItemIndex: currentTodoItemIndex,
+    const currentTodoListState: ITodoListState = {
+        currentListState: todoListState,
         addItem: addTodoItem,
         itemDurationsMins: todoListItemDurations,
         setDurations: setTodoListItemDurations,
     };
 
     return (
-        <TodoListStateContext.Provider value={todoListState}>
+        <TodoListStateContext.Provider value={currentTodoListState}>
             {children}
         </TodoListStateContext.Provider>
     );

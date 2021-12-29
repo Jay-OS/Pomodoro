@@ -8,7 +8,8 @@ import TimerContext from '../../../domain/contexts/timerState';
 import { todoItemTypes } from '../../../domain/entities/todoItems';
 
 const TodoListSummaryController = () => {
-    const todoListState = useContext(TodoListStateContext);
+    const todoListContext = useContext(TodoListStateContext);
+    const todoListState = todoListContext.currentListState;
     const timerState = useContext(TimerContext);
 
     const [todoCount, setTodoCount] = useState<number>(0);
@@ -18,38 +19,38 @@ const TodoListSummaryController = () => {
     const [currentTimerMinutes, setCurrentTimerMinutes] = useState<number>(0);
 
     useEffect(() => {
-        const todoCount = todoListState.withBreaks.filter(
+        const todoCount = todoListState.list.filter(
             (value) => value.itemType === todoItemTypes.POMODORO
         ).length;
         setTodoCount(todoCount);
 
-        const completedTodoCount = todoListState.withBreaks.filter(
+        const completedTodoCount = todoListState.list.filter(
             (value) =>
                 value.itemType === todoItemTypes.POMODORO &&
                 value.isComplete === true
         ).length;
         setCompletedTodoCount(completedTodoCount);
-    }, [todoListState.withBreaks]);
+    }, [todoListState.list]);
 
     useEffect(() => {
         if (todoListState.currentItemIndex !== undefined) {
             const currentItemType =
-                todoListState.withBreaks[todoListState.currentItemIndex]
+                todoListState.list[todoListState.currentItemIndex]
                     .itemType;
             setCurrentItemType(currentItemType);
         }
-    }, [todoListState.withBreaks, todoListState.currentItemIndex]);
+    }, [todoListState]);
 
     useEffect(() => {
-        const totalTimeLeft = todoListState.withBreaks
+        const totalTimeLeft = todoListState.list
             .filter((value) => value.isComplete === false)
             .reduce(
                 (partialSum, item) =>
-                    partialSum + todoListState.itemDurationsMins[item.itemType],
+                    partialSum + todoListContext.itemDurationsMins[item.itemType],
                 0
             );
         setTotalTimeLeft(totalTimeLeft);
-    }, [todoListState.withBreaks, todoListState.itemDurationsMins]);
+    }, [todoListState.list, todoListContext.itemDurationsMins]);
 
     useEffect(() => {
         setCurrentTimerMinutes(
@@ -59,7 +60,7 @@ const TodoListSummaryController = () => {
 
     let totalTodoTimeLeft =
         (todoCount - completedTodoCount) *
-        todoListState.itemDurationsMins[todoItemTypes.POMODORO];
+        todoListContext.itemDurationsMins[todoItemTypes.POMODORO];
     if (currentItemType === todoItemTypes.POMODORO) {
         totalTodoTimeLeft -= currentTimerMinutes;
     }

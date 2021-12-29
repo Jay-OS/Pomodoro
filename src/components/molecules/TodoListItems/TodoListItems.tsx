@@ -6,17 +6,15 @@ import { todoItemShape } from '../../../domain/entities/todoItems';
 
 interface ITodoListItems {
     listItems: todoItemShape[];
-    currentItemIndex: number | undefined;
 }
 
-const TodoListItems = ({ listItems, currentItemIndex }: ITodoListItems) => {
+const TodoListItems = ({ listItems }: ITodoListItems) => {
     return (
         <>
             {!!listItems && listItems.length > 0 ? (
                 listItems.map((value, index) => (
                     <TodoListItem
-                        todoItem={value}
-                        isCurrentItem={index === currentItemIndex}
+                        todoItemIndex={index}
                         key={value.id}
                     />
                 ))

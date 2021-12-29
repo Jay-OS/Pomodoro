@@ -4,7 +4,7 @@ import TimerContext from '../../../domain/contexts/timerState';
 
 import TodoListState from './TodoListState';
 
-const AppStateController: React.FC<{}> = ({ children }) => {
+const TodoListStateController: React.FC<{}> = ({ children }) => {
     const timerState = useContext(TimerContext);
 
     return (
@@ -14,4 +14,4 @@ const AppStateController: React.FC<{}> = ({ children }) => {
     );
 };
 
-export default AppStateController;
+export default TodoListStateController;

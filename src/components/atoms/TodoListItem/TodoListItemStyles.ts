@@ -25,6 +25,9 @@ const todoListItemStyles: styleMapProperties = {
         backgroundColor: colours.LONGBREAK_BACKGROUND,
     },
     H3: globalStyles.H3,
+    currentItem: {
+        
+    }
 };
 
 export default StyleSheet.create(todoListItemStyles);
