@@ -1,5 +1,8 @@
 # Pomodoro timer
 
+[![TypeScript](https://badgen.net/badge/icon/typescript?icon=typescript&label)](https://typescriptlang.org)
+
+
 ## Available Scripts
 
 In the project directory, you can run:
