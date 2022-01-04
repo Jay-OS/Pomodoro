@@ -7,6 +7,7 @@ const SiteHeader = () => (
     <header id='siteHeader' className={css(siteHeaderStyles.siteHeader)}>
         <svg
             className={css(siteHeaderStyles.siteHeaderColumn)}
+            id='siteLogo'
             aria-label='Pomodoro Timer'
             xmlns="http://www.w3.org/2000/svg"
             fillRule="evenodd"
@@ -27,6 +28,7 @@ const SiteHeader = () => (
             />
         </svg>
         <span
+            id='siteCredit'
             className={css(
                 siteHeaderStyles.siteHeaderColumn,
                 siteHeaderStyles.credit
