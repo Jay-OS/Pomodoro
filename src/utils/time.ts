@@ -24,7 +24,19 @@ export const millisecondsToMinutesAndSeconds = (milliseconds: number) => {
     };
 };
 
-export const millisecondsToMinutesAndSecondsString = (milliseconds: number) => {
+export interface MinutesAndSecondsString {
+    minutes: string,
+    seconds: string
+}
+
+export const millisecondsToMinutesAndSecondsString = (milliseconds: number | undefined): MinutesAndSecondsString => {
+    if (milliseconds === undefined) {
+        return {
+            minutes: '--',
+            seconds: '--'
+        }
+    }
+
     const minutesAndSeconds = millisecondsToMinutesAndSeconds(milliseconds);
     return {
         minutes: toTwoDigitString(minutesAndSeconds.minutes),

@@ -2,6 +2,8 @@ import { StyleSheet } from 'aphrodite/no-important';
 
 import { styleMapProperties } from '../../../theme/styles/objectMaps';
 
+import utils from '../../../theme/styles/utils';
+
 const timerStyles: styleMapProperties = {
     timerContainer: {
         display: 'flex',
@@ -17,6 +19,9 @@ const timerStyles: styleMapProperties = {
     timerDisplayValues: {
         fontSize: '3rem',
         margin: '0 0.25rem 0 0',
+    },
+    hidden: {
+        ...utils.HIDDEN,
     },
 };
 

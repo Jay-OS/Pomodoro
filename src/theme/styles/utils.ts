@@ -14,6 +14,11 @@ const utils: styleMapProperties = {
     NO_WRAP: {
         whiteSpace: 'nowrap',
     },
+    HIDDEN: {
+        position: 'absolute',
+        top: '-9999px',
+        left: '-9999px',
+    },
 };
 
 export default utils;

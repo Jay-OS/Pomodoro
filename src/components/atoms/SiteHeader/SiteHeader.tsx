@@ -4,9 +4,10 @@ import { css } from 'aphrodite/no-important';
 import siteHeaderStyles from './SiteHeaderStyles';
 
 const SiteHeader = () => (
-    <div className={css(siteHeaderStyles.siteHeader)}>
+    <header id='siteHeader' className={css(siteHeaderStyles.siteHeader)}>
         <svg
             className={css(siteHeaderStyles.siteHeaderColumn)}
+            aria-label='Pomodoro Timer'
             xmlns="http://www.w3.org/2000/svg"
             fillRule="evenodd"
             clipRule="evenodd"
@@ -34,7 +35,7 @@ const SiteHeader = () => (
             by Jay{' '}
             <span className={css(siteHeaderStyles.noWrap)}>Oldham-Smith</span>
         </span>
-    </div>
+    </header>
 );
 
 export default SiteHeader;

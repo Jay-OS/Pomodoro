@@ -30,7 +30,7 @@ const TodoListSummaryController = () => {
                 value.isComplete === true
         ).length;
         setCompletedTodoCount(completedTodoCount);
-    }, [todoListState.list]);
+    }, [todoListState.list, todoListState.list.length]);
 
     useEffect(() => {
         if (todoListState.currentItemIndex !== undefined) {
@@ -39,7 +39,7 @@ const TodoListSummaryController = () => {
                     .itemType;
             setCurrentItemType(currentItemType);
         }
-    }, [todoListState]);
+    }, [todoListState.list, todoListState.list.length, todoListState.currentItemIndex]);
 
     useEffect(() => {
         const totalTimeLeft = todoListState.list
@@ -50,11 +50,11 @@ const TodoListSummaryController = () => {
                 0
             );
         setTotalTimeLeft(totalTimeLeft);
-    }, [todoListState.list, todoListContext.itemDurationsMins]);
+    }, [todoListState.list, todoListState.list.length, todoListContext.itemDurationsMins]);
 
     useEffect(() => {
         setCurrentTimerMinutes(
-            Math.ceil(timerState.currentTimer.ellapsedMS / 1000 / 60)
+            Math.ceil((timerState.currentTimer.ellapsedMS || 0) / 1000 / 60)
         );
     }, [timerState.currentTimer.ellapsedMS]);
 

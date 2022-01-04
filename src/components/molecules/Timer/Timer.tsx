@@ -3,49 +3,50 @@ import { css } from 'aphrodite/no-important';
 
 import timerStyles from './TimerStyles';
 
-import { millisecondsToMinutesAndSecondsString } from '../../../utils/time';
-
-import { ICurrentTimerState } from '../../../domain/entities/timer';
+import { MinutesAndSecondsString } from '../../../utils/time';
 
 interface ITimer {
-    currentTimer: ICurrentTimerState;
+    minutesAndSeconds: MinutesAndSecondsString;
+    showControls: boolean;
+    hasStarted: boolean;
+    isPaused: boolean;
     toggleTimerPause: () => void;
     startTimer: () => void;
 }
 
-const Timer = ({ currentTimer, toggleTimerPause, startTimer }: ITimer) => {
-    const timerRemainingMS = currentTimer.totalTimeMS - currentTimer.ellapsedMS;
-    const timeRemaining =
-        millisecondsToMinutesAndSecondsString(timerRemainingMS);
-
+const Timer = ({ minutesAndSeconds, showControls, hasStarted, isPaused, toggleTimerPause, startTimer }: ITimer) => {
     return (
-        <div className={css(timerStyles.timerContainer)}>
+        <section id='timer' className={css(timerStyles.timerContainer)}>
+            <h2 className={css(timerStyles.hidden)}>Current timer</h2>
             <span
+                id='timerDisplay'
                 className={css(
                     timerStyles.timerContainerItem,
                     timerStyles.timerDisplay
                 )}
             >
-                <span className={css(timerStyles.timerDisplayValues)}>
-                    {timeRemaining.minutes}
+                <span id='timerDisplay.minutes' className={css(timerStyles.timerDisplayValues)}>
+                    {minutesAndSeconds.minutes}
                 </span>
                 mins &nbsp;
-                <span className={css(timerStyles.timerDisplayValues)}>
-                    {timeRemaining.seconds}
+                <span id='timerDisplay.seconds' className={css(timerStyles.timerDisplayValues)}>
+                    {minutesAndSeconds.seconds}
                 </span>
                 secs
             </span>
-            <span className={css(timerStyles.timerContainerItem)}>
-                {!currentTimer.hasStarted && (
-                    <button onClick={startTimer}>Start</button>
-                )}
-                {currentTimer.hasStarted && (
-                    <button onClick={toggleTimerPause}>
-                        {currentTimer.isPaused ? 'Unpause' : 'Pause'}
-                    </button>
-                )}
-            </span>
-        </div>
+            { showControls && (
+                <span id='timerControls' className={css(timerStyles.timerContainerItem)}>
+                    {!hasStarted && (
+                        <button id='playPauseButton' onClick={startTimer}>Start</button>
+                    )}
+                    {hasStarted && (
+                        <button id='playPauseButton' onClick={toggleTimerPause}>
+                            {isPaused ? 'Unpause' : 'Pause'}
+                        </button>
+                    )}
+                </span> 
+            )}
+        </section>
     );
 };
 

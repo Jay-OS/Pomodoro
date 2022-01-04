@@ -29,7 +29,7 @@ const TodoListItemController = ({ todoItemIndex }: ITodoListItemController) => {
 
     useEffect(() => {
         setCurrentTimerMinutes(
-            Math.ceil(timerState.currentTimer.ellapsedMS / 1000 / 60)
+            Math.ceil((timerState.currentTimer.ellapsedMS || 0) / 1000 / 60)
         );
     }, [timerState.currentTimer.ellapsedMS]);
 

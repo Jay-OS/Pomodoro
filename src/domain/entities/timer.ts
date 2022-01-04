@@ -2,8 +2,8 @@ import { minutesToMilliseconds } from '../../utils/time';
 import config from '../../constants/config';
 
 export interface ICurrentTimerState {
-    ellapsedMS: number;
-    totalTimeMS: number;
+    ellapsedMS: number | undefined;
+    totalTimeMS: number | undefined;
     endTimeMS: number;
     isPaused: boolean;
     hasStarted: boolean;

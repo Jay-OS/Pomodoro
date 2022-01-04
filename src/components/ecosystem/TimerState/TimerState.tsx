@@ -13,8 +13,8 @@ import config from '../../../constants/config';
 const TimerState: React.FC<{}> = ({ children }) => {
     const [currentTimerState, setCurrentTimerState] =
         useState<ICurrentTimerState>({
-            ellapsedMS: 0,
-            totalTimeMS: 0,
+            ellapsedMS: undefined,
+            totalTimeMS: undefined,
             endTimeMS: 0,
             isPaused: false,
             hasStarted: false,
