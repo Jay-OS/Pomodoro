@@ -12,9 +12,7 @@ import defaultTimesInMinutes, {
     defaultTimesInMinutesType,
 } from '../../../constants/defaultTimesInMinutes';
 
-import {
-    PomodoroFormFieldValues,
-} from '../../../constants/forms/formFields/createPomodoroFormFields';
+import { PomodoroFormFieldValues } from '../../../constants/forms/formFields/createPomodoroFormFields';
 
 interface ITodoListStateComponent {
     createTimer: (durationMinutes: number) => void;
@@ -24,8 +22,10 @@ const TodoListState: React.FC<ITodoListStateComponent> = ({
     children,
     createTimer,
 }) => {
-    const [todoListState, setTodoListState] =
-        useState<ICurrentTodoListState>({ list: [], currentItemIndex: undefined });
+    const [todoListState, setTodoListState] = useState<ICurrentTodoListState>({
+        list: [],
+        currentItemIndex: undefined,
+    });
     const [todoListItemDurations, setTodoListItemDurations] =
         useState<defaultTimesInMinutesType>(defaultTimesInMinutes);
 

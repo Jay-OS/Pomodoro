@@ -20,12 +20,9 @@ const TodoListItemController = ({ todoItemIndex }: ITodoListItemController) => {
 
     const todoItem = todoListState.list[todoItemIndex];
 
-    useEffect(
-        () => {
-            setIsCurrentItem(todoItemIndex === todoListState.currentItemIndex);
-        },
-        [todoItemIndex, todoListState.currentItemIndex]
-    );
+    useEffect(() => {
+        setIsCurrentItem(todoItemIndex === todoListState.currentItemIndex);
+    }, [todoItemIndex, todoListState.currentItemIndex]);
 
     useEffect(() => {
         setCurrentTimerMinutes(
@@ -33,12 +30,9 @@ const TodoListItemController = ({ todoItemIndex }: ITodoListItemController) => {
         );
     }, [timerState.currentTimer.ellapsedMS]);
 
-    useEffect(
-        () => {
-            setItemDuration(todoListContext.itemDurationsMins[todoItem.itemType]);
-        },
-        [todoListContext.itemDurationsMins, todoItem.itemType]
-    );
+    useEffect(() => {
+        setItemDuration(todoListContext.itemDurationsMins[todoItem.itemType]);
+    }, [todoListContext.itemDurationsMins, todoItem.itemType]);
 
     const remainingTimeMins = isCurrentItem
         ? itemDuration - currentTimerMinutes

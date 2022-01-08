@@ -8,19 +8,26 @@ import {
 
 describe('todoItemList entity . . .', () => {
     const getPomodoroRequests = (number: number): PomodoroFormFieldValues[] => {
-        return Array.from({length: number}, (_, i) => {
+        return Array.from({ length: number }, (_, i) => {
             return {
                 [PomodoroFormFieldNames.POMODORO_TITLE]: `The title for this Pomodoro (${i})`,
-                [PomodoroFormFieldNames.POMODORO_DESCRIPTION]: `A good description to go with the title (${i}).`
+                [PomodoroFormFieldNames.POMODORO_DESCRIPTION]: `A good description to go with the title (${i}).`,
             };
         });
-    }
+    };
 
-    const checkPomodoros = (todoItems: todoItemShape[], pomodoroValues: PomodoroFormFieldValues[]) => {
-        const pomodoros = todoItems.filter((item) => item.itemType === todoItemTypes.POMODORO);
+    const checkPomodoros = (
+        todoItems: todoItemShape[],
+        pomodoroValues: PomodoroFormFieldValues[]
+    ) => {
+        const pomodoros = todoItems.filter(
+            (item) => item.itemType === todoItemTypes.POMODORO
+        );
         pomodoros.forEach((pomodoro, index) => {
             expect(pomodoro.title).toEqual(pomodoroValues[index].pomodoroTitle);
-            expect(pomodoro.description).toEqual(pomodoroValues[index].pomodoroDescription);
+            expect(pomodoro.description).toEqual(
+                pomodoroValues[index].pomodoroDescription
+            );
         });
     };
 
@@ -47,14 +54,18 @@ describe('todoItemList entity . . .', () => {
 
         const pomodoro = currentState.list[0];
         expect(pomodoro.title).toEqual(pomodoroValues[0].pomodoroTitle);
-        expect(pomodoro.description).toEqual(pomodoroValues[0].pomodoroDescription);
+        expect(pomodoro.description).toEqual(
+            pomodoroValues[0].pomodoroDescription
+        );
     });
 
     it('Returns expected response from getCurrentState and add when list has two items and one break', () => {
         const instance = new TodoItemList();
         const pomodoroValues = getPomodoroRequests(2);
         let stateAfterAdd;
-        pomodoroValues.forEach((value) => stateAfterAdd = instance.add(value));
+        pomodoroValues.forEach(
+            (value) => (stateAfterAdd = instance.add(value))
+        );
         const currentState = instance.getCurrentState();
 
         expect(stateAfterAdd).toMatchObject(currentState);
@@ -63,9 +74,21 @@ describe('todoItemList entity . . .', () => {
         expect(currentState.list).toHaveLength(3);
         expect(currentState.currentItemIndex).toEqual(0);
 
-        expect(currentState.list.filter((item) => item.itemType === todoItemTypes.POMODORO)).toHaveLength(2);
-        expect(currentState.list.filter((item) => item.itemType === todoItemTypes.SHORT_BREAK)).toHaveLength(1);
-        expect(currentState.list.filter((item) => item.itemType === todoItemTypes.LONG_BREAK)).toHaveLength(0);
+        expect(
+            currentState.list.filter(
+                (item) => item.itemType === todoItemTypes.POMODORO
+            )
+        ).toHaveLength(2);
+        expect(
+            currentState.list.filter(
+                (item) => item.itemType === todoItemTypes.SHORT_BREAK
+            )
+        ).toHaveLength(1);
+        expect(
+            currentState.list.filter(
+                (item) => item.itemType === todoItemTypes.LONG_BREAK
+            )
+        ).toHaveLength(0);
 
         checkPomodoros(currentState.list, pomodoroValues);
     });
@@ -74,7 +97,9 @@ describe('todoItemList entity . . .', () => {
         const instance = new TodoItemList();
         const pomodoroValues = getPomodoroRequests(5);
         let stateAfterAdd;
-        pomodoroValues.forEach((value) => stateAfterAdd = instance.add(value));
+        pomodoroValues.forEach(
+            (value) => (stateAfterAdd = instance.add(value))
+        );
         const currentState = instance.getCurrentState();
 
         expect(stateAfterAdd).toMatchObject(currentState);
@@ -83,9 +108,21 @@ describe('todoItemList entity . . .', () => {
         expect(currentState.list).toHaveLength(9);
         expect(currentState.currentItemIndex).toEqual(0);
 
-        expect(currentState.list.filter((item) => item.itemType === todoItemTypes.POMODORO)).toHaveLength(5);
-        expect(currentState.list.filter((item) => item.itemType === todoItemTypes.SHORT_BREAK)).toHaveLength(3);
-        expect(currentState.list.filter((item) => item.itemType === todoItemTypes.LONG_BREAK)).toHaveLength(1);
+        expect(
+            currentState.list.filter(
+                (item) => item.itemType === todoItemTypes.POMODORO
+            )
+        ).toHaveLength(5);
+        expect(
+            currentState.list.filter(
+                (item) => item.itemType === todoItemTypes.SHORT_BREAK
+            )
+        ).toHaveLength(3);
+        expect(
+            currentState.list.filter(
+                (item) => item.itemType === todoItemTypes.LONG_BREAK
+            )
+        ).toHaveLength(1);
 
         checkPomodoros(currentState.list, pomodoroValues);
     });

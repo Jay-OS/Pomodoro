@@ -16,7 +16,7 @@ export interface ITodoListState {
 const TodoListStateContext = React.createContext<ITodoListState>({
     currentListState: {
         list: [],
-        currentItemIndex: undefined
+        currentItemIndex: undefined,
     },
     addItem: (values: any) => {},
     itemDurationsMins: defaultTimesInMinutes,

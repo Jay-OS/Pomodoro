@@ -11,7 +11,11 @@ interface ITodoListItem {
     isCurrentItem: boolean;
 }
 
-const TodoListItem = ({ todoItem, remainingTimeMins, isCurrentItem }: ITodoListItem) => {
+const TodoListItem = ({
+    todoItem,
+    remainingTimeMins,
+    isCurrentItem,
+}: ITodoListItem) => {
     return (
         <div
             className={css(
@@ -21,9 +25,7 @@ const TodoListItem = ({ todoItem, remainingTimeMins, isCurrentItem }: ITodoListI
             )}
         >
             <span>
-                <h3 className={css(todoListItemStyles.H3)}>
-                    {todoItem.title}
-                </h3>
+                <h3 className={css(todoListItemStyles.H3)}>{todoItem.title}</h3>
                 <p>{todoItem.description}</p>
             </span>
             <span>

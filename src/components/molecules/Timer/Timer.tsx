@@ -14,37 +14,55 @@ interface ITimer {
     startTimer: () => void;
 }
 
-const Timer = ({ minutesAndSeconds, showControls, hasStarted, isPaused, toggleTimerPause, startTimer }: ITimer) => {
+const Timer = ({
+    minutesAndSeconds,
+    showControls,
+    hasStarted,
+    isPaused,
+    toggleTimerPause,
+    startTimer,
+}: ITimer) => {
     return (
-        <section id='timer' className={css(timerStyles.timerContainer)}>
+        <section id="timer" className={css(timerStyles.timerContainer)}>
             <h2 className={css(timerStyles.hidden)}>Current timer</h2>
             <span
-                id='timerDisplay'
+                id="timerDisplay"
                 className={css(
                     timerStyles.timerContainerItem,
                     timerStyles.timerDisplay
                 )}
             >
-                <span id='timerDisplay.minutes' className={css(timerStyles.timerDisplayValues)}>
+                <span
+                    id="timerDisplay.minutes"
+                    className={css(timerStyles.timerDisplayValues)}
+                >
                     {minutesAndSeconds.minutes}
                 </span>
                 mins &nbsp;
-                <span id='timerDisplay.seconds' className={css(timerStyles.timerDisplayValues)}>
+                <span
+                    id="timerDisplay.seconds"
+                    className={css(timerStyles.timerDisplayValues)}
+                >
                     {minutesAndSeconds.seconds}
                 </span>
                 secs
             </span>
-            { showControls && (
-                <span id='timerControls' className={css(timerStyles.timerContainerItem)}>
+            {showControls && (
+                <span
+                    id="timerControls"
+                    className={css(timerStyles.timerContainerItem)}
+                >
                     {!hasStarted && (
-                        <button id='playPauseButton' onClick={startTimer}>Start</button>
+                        <button id="playPauseButton" onClick={startTimer}>
+                            Start
+                        </button>
                     )}
                     {hasStarted && (
-                        <button id='playPauseButton' onClick={toggleTimerPause}>
+                        <button id="playPauseButton" onClick={toggleTimerPause}>
                             {isPaused ? 'Unpause' : 'Pause'}
                         </button>
                     )}
-                </span> 
+                </span>
             )}
         </section>
     );

@@ -25,16 +25,18 @@ export const millisecondsToMinutesAndSeconds = (milliseconds: number) => {
 };
 
 export interface MinutesAndSecondsString {
-    minutes: string,
-    seconds: string
+    minutes: string;
+    seconds: string;
 }
 
-export const millisecondsToMinutesAndSecondsString = (milliseconds: number | undefined): MinutesAndSecondsString => {
+export const millisecondsToMinutesAndSecondsString = (
+    milliseconds: number | undefined
+): MinutesAndSecondsString => {
     if (milliseconds === undefined) {
         return {
             minutes: '--',
-            seconds: '--'
-        }
+            seconds: '--',
+        };
     }
 
     const minutesAndSeconds = millisecondsToMinutesAndSeconds(milliseconds);

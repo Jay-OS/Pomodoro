@@ -35,22 +35,30 @@ const TodoListSummaryController = () => {
     useEffect(() => {
         if (todoListState.currentItemIndex !== undefined) {
             const currentItemType =
-                todoListState.list[todoListState.currentItemIndex]
-                    .itemType;
+                todoListState.list[todoListState.currentItemIndex].itemType;
             setCurrentItemType(currentItemType);
         }
-    }, [todoListState.list, todoListState.list.length, todoListState.currentItemIndex]);
+    }, [
+        todoListState.list,
+        todoListState.list.length,
+        todoListState.currentItemIndex,
+    ]);
 
     useEffect(() => {
         const totalTimeLeft = todoListState.list
             .filter((value) => value.isComplete === false)
             .reduce(
                 (partialSum, item) =>
-                    partialSum + todoListContext.itemDurationsMins[item.itemType],
+                    partialSum +
+                    todoListContext.itemDurationsMins[item.itemType],
                 0
             );
         setTotalTimeLeft(totalTimeLeft);
-    }, [todoListState.list, todoListState.list.length, todoListContext.itemDurationsMins]);
+    }, [
+        todoListState.list,
+        todoListState.list.length,
+        todoListContext.itemDurationsMins,
+    ]);
 
     useEffect(() => {
         setCurrentTimerMinutes(

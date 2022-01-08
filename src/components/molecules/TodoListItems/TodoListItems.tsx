@@ -13,10 +13,7 @@ const TodoListItems = ({ listItems }: ITodoListItems) => {
         <>
             {!!listItems && listItems.length > 0 ? (
                 listItems.map((value, index) => (
-                    <TodoListItem
-                        todoItemIndex={index}
-                        key={value.id}
-                    />
+                    <TodoListItem todoItemIndex={index} key={value.id} />
                 ))
             ) : (
                 <span>You haven't planned any 'to do' items yet.</span>

@@ -4,11 +4,11 @@ import { css } from 'aphrodite/no-important';
 import siteHeaderStyles from './SiteHeaderStyles';
 
 const SiteHeader = () => (
-    <header id='siteHeader' className={css(siteHeaderStyles.siteHeader)}>
+    <header id="siteHeader" className={css(siteHeaderStyles.siteHeader)}>
         <svg
             className={css(siteHeaderStyles.siteHeaderColumn)}
-            id='siteLogo'
-            aria-label='Pomodoro Timer'
+            id="siteLogo"
+            aria-label="Pomodoro Timer"
             xmlns="http://www.w3.org/2000/svg"
             fillRule="evenodd"
             clipRule="evenodd"
@@ -28,7 +28,7 @@ const SiteHeader = () => (
             />
         </svg>
         <span
-            id='siteCredit'
+            id="siteCredit"
             className={css(
                 siteHeaderStyles.siteHeaderColumn,
                 siteHeaderStyles.credit

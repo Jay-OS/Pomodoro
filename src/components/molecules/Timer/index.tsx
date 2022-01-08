@@ -10,10 +10,14 @@ const TimerController = () => {
     const timerState = useContext(TimerContext);
     const currentTimer = timerState.currentTimer;
 
-    const timerExists = currentTimer.totalTimeMS !== undefined && currentTimer.ellapsedMS !== undefined;
-    const timerRemainingMS = (currentTimer.totalTimeMS !== undefined && currentTimer.ellapsedMS !== undefined)
-        ? currentTimer.totalTimeMS - currentTimer.ellapsedMS
-        : undefined;
+    const timerExists =
+        currentTimer.totalTimeMS !== undefined &&
+        currentTimer.ellapsedMS !== undefined;
+    const timerRemainingMS =
+        currentTimer.totalTimeMS !== undefined &&
+        currentTimer.ellapsedMS !== undefined
+            ? currentTimer.totalTimeMS - currentTimer.ellapsedMS
+            : undefined;
     const timeRemaining =
         millisecondsToMinutesAndSecondsString(timerRemainingMS);
 
