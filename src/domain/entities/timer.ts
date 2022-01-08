@@ -11,7 +11,7 @@ export interface ICurrentTimerState {
 }
 
 interface ITimer {
-    start: () => void;
+    start: () => ICurrentTimerState;
     togglePause: () => ICurrentTimerState;
     update: () => ICurrentTimerState;
     getCurrentState: () => ICurrentTimerState;
@@ -54,6 +54,7 @@ export class Timer implements ITimer {
             this.endTimeMS = currentTimeMS + this.totalTimeMS;
             this.hasStarted = true;
         }
+        return this.getCurrentState();
     }
 
     update() {
