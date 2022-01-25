@@ -10,7 +10,7 @@ import TodoList from '../../molecules/TodoList';
 import SiteHeader from '../../atoms/SiteHeader';
 
 const App = () => (
-    <div className={css(appStyles.panel)}>
+    <main id="app-container" className={css(appStyles.panel)}>
         <SiteHeader />
         <TimerState>
             <Timer />
@@ -18,7 +18,7 @@ const App = () => (
                 <TodoList />
             </TodoListState>
         </TimerState>
-    </div>
+    </main>
 );
 
 export default App;

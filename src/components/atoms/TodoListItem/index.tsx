@@ -7,9 +7,10 @@ import TimerContext from '../../../domain/contexts/timerState';
 
 interface ITodoListItemController {
     todoItemIndex: number;
+    id?: string;
 }
 
-const TodoListItemController = ({ todoItemIndex }: ITodoListItemController) => {
+const TodoListItemController = ({ todoItemIndex, id }: ITodoListItemController) => {
     const [itemDuration, setItemDuration] = useState<number>(0);
     const [isCurrentItem, setIsCurrentItem] = useState<boolean>(false);
     const [currentTimerMinutes, setCurrentTimerMinutes] = useState<number>(0);
@@ -40,6 +41,7 @@ const TodoListItemController = ({ todoItemIndex }: ITodoListItemController) => {
 
     return (
         <TodoListItem
+            id={id}
             isCurrentItem={isCurrentItem}
             todoItem={todoItem}
             remainingTimeMins={remainingTimeMins}

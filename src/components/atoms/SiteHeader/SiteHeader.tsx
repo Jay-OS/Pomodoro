@@ -5,9 +5,10 @@ import siteHeaderStyles from './SiteHeaderStyles';
 
 const SiteHeader = () => (
     <header id="siteHeader" className={css(siteHeaderStyles.siteHeader)}>
+        <h1 id="siteHeader-heading" className={css(siteHeaderStyles.hidden)}>Pomodoro Timer</h1>
         <svg
             className={css(siteHeaderStyles.siteHeaderColumn)}
-            id="siteLogo"
+            id="siteHeader-siteLogo"
             aria-label="Pomodoro Timer"
             xmlns="http://www.w3.org/2000/svg"
             fillRule="evenodd"
@@ -28,7 +29,7 @@ const SiteHeader = () => (
             />
         </svg>
         <span
-            id="siteCredit"
+            id="siteHeader-siteCredit"
             className={css(
                 siteHeaderStyles.siteHeaderColumn,
                 siteHeaderStyles.credit

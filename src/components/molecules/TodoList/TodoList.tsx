@@ -9,10 +9,10 @@ import todoListStyles from './TodoListStyles';
 
 const TodoList = () => {
     return (
-        <section id="todoList">
-            <h2 className={css(todoListStyles.hidden)}>To do list</h2>
+        <section id="todoList-container" aria-labelledby="todoList-heading">
+            <h2 id="todoList-heading" className={css(todoListStyles.hidden)}>To do list</h2>
             <TodoItemForm />
-            <div>
+            <div id="todoList">
                 <TodoListSummary />
                 <TodoListItems />
             </div>

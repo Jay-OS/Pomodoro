@@ -19,26 +19,26 @@ const TodoListSummary = ({
     totalTodoTimeLeft,
 }: ITodoListSummary) => {
     return (
-        <div className={css(todoListSummaryStyles.summaryContainer)}>
-            <span className={css(todoListSummaryStyles.summaryItem)}>
+        <div id="todoListSummary" className={css(todoListSummaryStyles.summaryContainer)}>
+            <span id="todoListSummary-todoCount" className={css(todoListSummaryStyles.summaryItem)}>
                 <span>To do items</span>
                 <span className={css(todoListSummaryStyles.summaryItemValue)}>
                     {todoCount}
                 </span>
             </span>
-            <span className={css(todoListSummaryStyles.summaryItem)}>
+            <span id="todoListSummary-completedTodoCount" className={css(todoListSummaryStyles.summaryItem)}>
                 <span>Completed to do items</span>
                 <span className={css(todoListSummaryStyles.summaryItemValue)}>
                     {completedTodoCount}
                 </span>
             </span>
-            <span className={css(todoListSummaryStyles.summaryItem)}>
+            <span id="todoListSummary-todoTimeLeft" className={css(todoListSummaryStyles.summaryItem)}>
                 <span>To do time left</span>
                 <span className={css(todoListSummaryStyles.summaryItemValue)}>
                     {minutesToHoursAndMinutesString(totalTodoTimeLeft)}
                 </span>
             </span>
-            <span className={css(todoListSummaryStyles.summaryItem)}>
+            <span id="todoListSummary-totalTimeLeft" className={css(todoListSummaryStyles.summaryItem)}>
                 <span>Total time left</span>
                 <span className={css(todoListSummaryStyles.summaryItemValue)}>
                     {minutesToHoursAndMinutesString(totalTimeLeft)}

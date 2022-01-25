@@ -29,6 +29,9 @@ const siteHeaderStyles: styleMapProperties = {
     noWrap: {
         ...utils.NO_WRAP,
     },
+    hidden: {
+        ...utils.HIDDEN,
+    },
 };
 
 export default StyleSheet.create(siteHeaderStyles);

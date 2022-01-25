@@ -22,20 +22,21 @@ const TextInput: React.FC<
     );
 
     return (
-        <div className={css(textInputStyles.container)}>
+        <div id={`${props.id}-input-container`} className={css(textInputStyles.container)}>
             <div className={css(textInputStyles.inputContainer)}>
                 {!!label && (
                     <label
+                        id={`${props.id}-input-label`}
                         htmlFor={props.id || props.name}
                         className={css(textInputStyles.label)}
                     >
                         {label}
                     </label>
                 )}
-                <input {...field} {...props} className={inputClassName} />
+                <input {...field} {...props} id={`${props.id}-input`} className={inputClassName} />
             </div>
             {!isInputValid && (
-                <span className={css(textInputStyles.validationError)}>
+                <span id={`${props.id}-input-error`} className={css(textInputStyles.validationError)}>
                     {meta.error}
                 </span>
             )}

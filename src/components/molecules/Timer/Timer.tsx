@@ -23,24 +23,24 @@ const Timer = ({
     startTimer,
 }: ITimer) => {
     return (
-        <section id="timer" className={css(timerStyles.timerContainer)}>
-            <h2 className={css(timerStyles.hidden)}>Current timer</h2>
+        <section id="timer" aria-labelledby="timer-heading" className={css(timerStyles.timerContainer)}>
+            <h2 id="timer-heading" className={css(timerStyles.hidden)}>Current timer</h2>
             <span
-                id="timerDisplay"
+                id="timer-display"
                 className={css(
                     timerStyles.timerContainerItem,
                     timerStyles.timerDisplay
                 )}
             >
                 <span
-                    id="timerDisplay.minutes"
+                    id="timer-display-minutes"
                     className={css(timerStyles.timerDisplayValues)}
                 >
                     {minutesAndSeconds.minutes}
                 </span>
                 mins &nbsp;
                 <span
-                    id="timerDisplay.seconds"
+                    id="timer-display-seconds"
                     className={css(timerStyles.timerDisplayValues)}
                 >
                     {minutesAndSeconds.seconds}
@@ -49,16 +49,16 @@ const Timer = ({
             </span>
             {showControls && (
                 <span
-                    id="timerControls"
+                    id="timer-controls"
                     className={css(timerStyles.timerContainerItem)}
                 >
                     {!hasStarted && (
-                        <button id="playPauseButton" onClick={startTimer}>
+                        <button id="timer-controls-playPauseButton" onClick={startTimer}>
                             Start
                         </button>
                     )}
                     {hasStarted && (
-                        <button id="playPauseButton" onClick={toggleTimerPause}>
+                        <button id="timer-controls-playPauseButton" onClick={toggleTimerPause}>
                             {isPaused ? 'Unpause' : 'Pause'}
                         </button>
                     )}

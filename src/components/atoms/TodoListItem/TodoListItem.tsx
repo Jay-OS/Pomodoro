@@ -9,12 +9,14 @@ interface ITodoListItem {
     todoItem: todoItemShape;
     remainingTimeMins: number;
     isCurrentItem: boolean;
+    id?: string;
 }
 
 const TodoListItem = ({
     todoItem,
     remainingTimeMins,
     isCurrentItem,
+    id,
 }: ITodoListItem) => {
     return (
         <div
@@ -23,12 +25,13 @@ const TodoListItem = ({
                 todoListItemStyles[todoItem.itemType],
                 isCurrentItem && todoListItemStyles.currentItem
             )}
+            id={id}
         >
-            <span>
+            <span id={`${id}-description`}>
                 <h3 className={css(todoListItemStyles.H3)}>{todoItem.title}</h3>
                 <p>{todoItem.description}</p>
             </span>
-            <span>
+            <span id={`${id}-time`}>
                 <span>{remainingTimeMins}</span>
                 <span>mins</span>
             </span>

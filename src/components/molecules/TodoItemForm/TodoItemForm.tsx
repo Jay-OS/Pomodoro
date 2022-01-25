@@ -47,8 +47,8 @@ const TodoItemForm = ({ onSubmit }: ITodoItemForm) => {
             validationSchema={Yup.object().shape(validation)}
             onSubmit={onSubmit}
         >
-            <Form className={css(todoItemFormStyles.todoFormContainer)}>
-                <h2 className={css(todoItemFormStyles.H2)}>
+            <Form id="todoList-todoForm" className={css(todoItemFormStyles.todoFormContainer)}>
+                <h2 id="todoList-todoForm-heading" className={css(todoItemFormStyles.H2)}>
                     Add a new 'to do' item
                 </h2>
                 <TextInput {...createPomodoroFormFields.title.props} />
