@@ -15,6 +15,7 @@ interface ITodoListItemController {
 const TodoListItemController = ({ todoItemIndex, id }: ITodoListItemController) => {
     const [itemDuration, setItemDuration] = useState<number>(0);
     const [isCurrentItem, setIsCurrentItem] = useState<boolean>(false);
+    const [canBeDeleted, setCanBeDeleted] = useState<boolean>(false);
     const [currentTimerMinutes, setCurrentTimerMinutes] = useState<number>(0);
 
     const todoListContext = useContext(TodoListStateContext);
@@ -37,13 +38,19 @@ const TodoListItemController = ({ todoItemIndex, id }: ITodoListItemController) 
         setItemDuration(todoListContext.itemDurationsMins[todoItem.itemType]);
     }, [todoListContext.itemDurationsMins, todoItem.itemType]);
 
+    useEffect(() => {
+        const currentActiveItem = isCurrentItem && timerState.currentTimer.hasStarted;
+        const canBeDeleted = !todoItem.isComplete
+            && todoItem.itemType === todoItemTypes.POMODORO
+            && !currentActiveItem;
+        setCanBeDeleted(canBeDeleted);
+    }, [isCurrentItem, todoItem.id, todoItem.isComplete, todoItem.itemType, timerState.currentTimer.hasStarted]);
+
+    const deleteAction = () => todoListContext.deleteItem(todoItem.id);
+
     const remainingTimeMins = isCurrentItem
         ? itemDuration - currentTimerMinutes
         : itemDuration;
-
-    const deleteAction = todoItem.itemType === todoItemTypes.POMODORO
-        ? () => todoListContext.deleteItem(todoItem.id)
-        : undefined;
 
     return (
         <TodoListItem
@@ -51,7 +58,7 @@ const TodoListItemController = ({ todoItemIndex, id }: ITodoListItemController) 
             isCurrentItem={isCurrentItem}
             todoItem={todoItem}
             remainingTimeMins={remainingTimeMins}
-            deleteAction={deleteAction}
+            deleteAction={canBeDeleted ? deleteAction : undefined}
         />
     );
 };
