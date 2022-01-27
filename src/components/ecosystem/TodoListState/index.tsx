@@ -8,7 +8,7 @@ const TodoListStateController: React.FC<{}> = ({ children }) => {
     const timerState = useContext(TimerContext);
 
     return (
-        <TodoListState createTimer={timerState.createTimer}>
+        <TodoListState createTimer={timerState.createTimer} clearTimer={timerState.clearTimer}>
             {children}
         </TodoListState>
     );

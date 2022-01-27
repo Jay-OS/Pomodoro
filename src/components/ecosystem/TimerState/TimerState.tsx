@@ -11,21 +11,27 @@ import timer, {
 import config from '../../../constants/config';
 
 const TimerState: React.FC<{}> = ({ children }) => {
-    const [currentTimerState, setCurrentTimerState] =
-        useState<ICurrentTimerState>({
-            ellapsedMS: undefined,
-            totalTimeMS: undefined,
-            endTimeMS: 0,
-            isPaused: false,
-            hasStarted: false,
-            hasEnded: false,
-        });
+    const defaultTimerState: ICurrentTimerState = {
+        ellapsedMS: undefined,
+        totalTimeMS: undefined,
+        endTimeMS: 0,
+        isPaused: false,
+        hasStarted: false,
+        hasEnded: false,
+    }
+
+    const [currentTimerState, setCurrentTimerState] = useState<ICurrentTimerState>(defaultTimerState);
 
     let intervalId: NodeJS.Timeout | null = null;
 
     const createTimer = (durationMinutes: number) => {
         timer.instance = new Timer(durationMinutes);
         setCurrentTimerState(timer.instance.getCurrentState());
+    };
+
+    const clearTimer = () => {
+        timer.instance = null;
+        setCurrentTimerState(defaultTimerState);
     };
 
     const toggleTimerPause = () => {
@@ -58,6 +64,7 @@ const TimerState: React.FC<{}> = ({ children }) => {
     const timerState: ITimerState = {
         currentTimer: currentTimerState,
         createTimer: createTimer,
+        clearTimer: clearTimer,
         toggleTimerPause: toggleTimerPause,
         startTimer: startTimer,
     };

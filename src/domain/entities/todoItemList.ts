@@ -35,6 +35,20 @@ export class TodoItemList {
         return thisTodoList.getCurrentState();
     }
 
+    delete(id?: string) {
+        const thisTodoList = this;
+
+        thisTodoList.list = thisTodoList.list.filter((todoItem) => todoItem.id !== id);
+        const listLength = thisTodoList.list.length;
+        if (thisTodoList.currentItemIndex !== undefined && thisTodoList.currentItemIndex >= listLength){
+            thisTodoList.currentItemIndex = listLength > 0
+                ? listLength - 1
+                : undefined;
+        }
+
+        return thisTodoList.getCurrentState();
+    }
+
     private getTodoListWithBreaks = () => {
         const thisTodoList = this;
 

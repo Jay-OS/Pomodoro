@@ -1,7 +1,9 @@
 import React from 'react';
 import { css } from 'aphrodite/no-important';
+import { MdDelete } from 'react-icons/md';
+import ControlButton from '../ControlButton';
 
-import { todoItemShape } from '../../../domain/entities/todoItems';
+import { todoItemShape, todoItemTypes } from '../../../domain/entities/todoItems';
 
 import todoListItemStyles from './TodoListItemStyles';
 
@@ -10,6 +12,7 @@ interface ITodoListItem {
     remainingTimeMins: number;
     isCurrentItem: boolean;
     id?: string;
+    deleteAction?: () => void;
 }
 
 const TodoListItem = ({
@@ -17,6 +20,7 @@ const TodoListItem = ({
     remainingTimeMins,
     isCurrentItem,
     id,
+    deleteAction,
 }: ITodoListItem) => {
     return (
         <div
@@ -35,6 +39,12 @@ const TodoListItem = ({
                 <span>{remainingTimeMins}</span>
                 <span>mins</span>
             </span>
+            {deleteAction && todoItem.itemType === todoItemTypes.POMODORO &&
+                <span id={`${id}-delete`}>
+                    <ControlButton onClick={deleteAction} aria-label="Delete">
+                        <MdDelete />
+                    </ControlButton>
+                </span>}
         </div>
     );
 };

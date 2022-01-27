@@ -16,11 +16,13 @@ import { PomodoroFormFieldValues } from '../../../constants/forms/formFields/cre
 
 interface ITodoListStateComponent {
     createTimer: (durationMinutes: number) => void;
+    clearTimer: () => void;
 }
 
 const TodoListState: React.FC<ITodoListStateComponent> = ({
     children,
     createTimer,
+    clearTimer,
 }) => {
     const [todoListState, setTodoListState] = useState<ICurrentTodoListState>({
         list: [],
@@ -49,9 +51,23 @@ const TodoListState: React.FC<ITodoListStateComponent> = ({
         setTodoListState(newState);
     };
 
+    const deleteTodoItem = (id?: string) => {
+        if (!todoItemList.instance) {
+            return;
+        }
+        const newState = todoItemList.instance.delete(id);
+
+        if (newState.currentItemIndex === undefined) {
+            clearTimer();
+        }
+
+        setTodoListState(newState);
+    }
+
     const currentTodoListState: ITodoListState = {
         currentListState: todoListState,
         addItem: addTodoItem,
+        deleteItem: deleteTodoItem,
         itemDurationsMins: todoListItemDurations,
         setDurations: setTodoListItemDurations,
     };

@@ -5,6 +5,7 @@ import { ICurrentTimerState } from '../entities/timer';
 export interface ITimerState {
     currentTimer: ICurrentTimerState;
     createTimer: (durationMinutes: number) => void;
+    clearTimer: () => void;
     toggleTimerPause: () => void;
     startTimer: () => void;
 }
@@ -19,6 +20,7 @@ const TimerStateContext = React.createContext<ITimerState>({
         hasEnded: false,
     },
     createTimer: (durationMinutes) => {},
+    clearTimer: () => {},
     toggleTimerPause: () => {},
     startTimer: () => {},
 });

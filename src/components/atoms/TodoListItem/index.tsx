@@ -5,6 +5,8 @@ import TodoListItem from './TodoListItem';
 import TodoListStateContext from '../../../domain/contexts/todoListState';
 import TimerContext from '../../../domain/contexts/timerState';
 
+import { todoItemTypes } from '../../../domain/entities/todoItems';
+
 interface ITodoListItemController {
     todoItemIndex: number;
     id?: string;
@@ -39,12 +41,17 @@ const TodoListItemController = ({ todoItemIndex, id }: ITodoListItemController) 
         ? itemDuration - currentTimerMinutes
         : itemDuration;
 
+    const deleteAction = todoItem.itemType === todoItemTypes.POMODORO
+        ? () => todoListContext.deleteItem(todoItem.id)
+        : undefined;
+
     return (
         <TodoListItem
             id={id}
             isCurrentItem={isCurrentItem}
             todoItem={todoItem}
             remainingTimeMins={remainingTimeMins}
+            deleteAction={deleteAction}
         />
     );
 };

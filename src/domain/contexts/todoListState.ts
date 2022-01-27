@@ -9,6 +9,7 @@ import defaultTimesInMinutes, {
 export interface ITodoListState {
     currentListState: ICurrentTodoListState;
     addItem: (values: any) => void;
+    deleteItem: (id?: string) => void;
     itemDurationsMins: defaultTimesInMinutesType;
     setDurations: (value: defaultTimesInMinutesType) => void;
 }
@@ -19,6 +20,7 @@ const TodoListStateContext = React.createContext<ITodoListState>({
         currentItemIndex: undefined,
     },
     addItem: (values: any) => {},
+    deleteItem: (id?: string) => {},
     itemDurationsMins: defaultTimesInMinutes,
     setDurations: (value: defaultTimesInMinutesType) => {},
 });
