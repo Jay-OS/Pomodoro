@@ -10,6 +10,7 @@ const siteHeaderStyles: styleMapProperties = {
         display: 'flex',
         flexDirection: 'row',
         flexWrap: 'nowrap',
+        flex: '0 1 auto',
         width: '100%',
         columnGap: '5%',
         alignItems: 'center',

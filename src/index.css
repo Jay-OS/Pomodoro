@@ -44,4 +44,5 @@ table {
 html, body, #root {
     height: 100%;
     overflow: none;
+	background-color: #F5F1ED;
 }

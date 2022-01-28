@@ -15,9 +15,13 @@ const appStyles: styleMapProperties = {
         ...utils.CENTER_ELEMENT,
         fontFamily: [fontFaces.openSansRegular, 'sans-serif'],
         color: colours.TEXT_COLOUR,
+        display: 'flex',
+        flexFlow: 'column',
+        backgroundColor: 'white',
+        padding: '1rem',
+        borderRadius: '0.75rem',
         [responsiveBreakpoints.TABLET.mediaQuery]: {
             width: '85%',
-            height: '90%',
         },
         [responsiveBreakpoints.DESKTOP.mediaQuery]: {
             width: '50%',

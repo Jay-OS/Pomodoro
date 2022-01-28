@@ -5,19 +5,22 @@ import appStyles from './AppStyles';
 
 import TodoListState from '../TodoListState';
 import TimerState from '../TimerState';
+import ScreenSizeState from '../ScreenSizeState';
 import Timer from '../../molecules/Timer';
 import TodoList from '../../molecules/TodoList';
 import SiteHeader from '../../atoms/SiteHeader';
 
 const App = () => (
     <main id="app-container" className={css(appStyles.panel)}>
-        <SiteHeader />
-        <TimerState>
-            <Timer />
-            <TodoListState>
-                <TodoList />
-            </TodoListState>
-        </TimerState>
+        <ScreenSizeState>
+            <SiteHeader />
+            <TimerState>
+                <Timer />
+                <TodoListState>
+                    <TodoList />
+                </TodoListState>
+            </TimerState>
+        </ScreenSizeState>
     </main>
 );
 

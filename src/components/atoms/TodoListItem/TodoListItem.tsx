@@ -1,7 +1,8 @@
 import React from 'react';
 import { css } from 'aphrodite/no-important';
 import { MdDelete } from 'react-icons/md';
-import ControlButton from '../ControlButton';
+
+import ControlButton, { controlButtonType, controlButtonSize } from '../ControlButton';
 
 import { todoItemShape, todoItemTypes } from '../../../domain/entities/todoItems';
 
@@ -41,8 +42,13 @@ const TodoListItem = ({
             </span>
             <span className={css(todoListItemStyles.deleteContainer)} id={`${id}-delete`}>
             {deleteAction && todoItem.itemType === todoItemTypes.POMODORO &&
-                <ControlButton onClick={deleteAction} aria-label="Delete">
-                    <MdDelete />
+                <ControlButton
+                    onClick={deleteAction}
+                    aria-label="Delete"
+                    buttonType={controlButtonType.REVERSED}
+                    buttonSize={controlButtonSize.SMALL}
+                >
+                    <MdDelete id={`${id}-delete-icon`} />
                 </ControlButton>}
             </span>
         </div>

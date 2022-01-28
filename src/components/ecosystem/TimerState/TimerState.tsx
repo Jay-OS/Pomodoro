@@ -31,6 +31,10 @@ const TimerState: React.FC<{}> = ({ children }) => {
 
     const clearTimer = () => {
         timer.instance = null;
+        if (intervalId) {
+            clearInterval(intervalId);
+            intervalId = null;
+        }
         setCurrentTimerState(defaultTimerState);
     };
 

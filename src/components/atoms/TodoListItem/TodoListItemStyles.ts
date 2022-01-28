@@ -11,9 +11,8 @@ import { styleMapProperties } from '../../../theme/styles/objectMaps';
 const todoListItemStyles: styleMapProperties = {
     todoListItemContainer: {
         ...utils.CONTAINER_STYLES,
-        border: `1px solid ${colours.BORDER_COLOUR}`,
+        border: 'none',
         margin: '0.25rem 0',
-        color: '#FFFFFF',
         display: 'flex',
         flexDirection: 'row',
         flexWrap: 'nowrap',
@@ -21,12 +20,15 @@ const todoListItemStyles: styleMapProperties = {
     },
     [todoItemTypes.POMODORO]: {
         backgroundColor: colours.POMODORO_BACKGROUND,
+        color: colours.POMODORO_COLOUR,
     },
     [todoItemTypes.SHORT_BREAK]: {
         backgroundColor: colours.SHORTBREAK_BACKGROUND,
+        color: colours.SHORTBREAK_COLOUR,
     },
     [todoItemTypes.LONG_BREAK]: {
         backgroundColor: colours.LONGBREAK_BACKGROUND,
+        color: colours.LONGBREAK_COLOUR,
     },
     H3: globalStyles.H3,
     currentItem: {},

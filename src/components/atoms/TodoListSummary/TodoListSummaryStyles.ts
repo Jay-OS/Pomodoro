@@ -14,6 +14,7 @@ const todoListSummaryStyles: styleMapProperties = {
         width: '100%',
         columnGap: '2%',
         alignItems: 'center',
+        flex: '0 1 auto',
     },
     summaryItem: {
         display: 'flex',

@@ -19,6 +19,10 @@ const utils: styleMapProperties = {
         top: '-9999px',
         left: '-9999px',
     },
+    CONTAINER_OVERFLOW: {
+        overflowX: 'hidden',
+        overfloyY: 'auto',
+    },
 };
 
 export default utils;

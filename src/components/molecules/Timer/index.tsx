@@ -15,18 +15,12 @@ const TimerController = () => {
         currentTimer.ellapsedMS !== undefined
             ? currentTimer.totalTimeMS - currentTimer.ellapsedMS
             : undefined;
-    const timerExists = timerRemainingMS !== undefined;
     const timeRemaining =
         millisecondsToMinutesAndSecondsString(timerRemainingMS);
 
     return (
         <Timer
             minutesAndSeconds={timeRemaining}
-            showControls={timerExists}
-            hasStarted={currentTimer.hasStarted}
-            isPaused={currentTimer.isPaused}
-            toggleTimerPause={timerState.toggleTimerPause}
-            startTimer={timerState.startTimer}
         />
     );
 };
