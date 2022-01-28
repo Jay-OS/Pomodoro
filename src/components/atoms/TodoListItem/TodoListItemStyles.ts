@@ -14,6 +14,10 @@ const todoListItemStyles: styleMapProperties = {
         border: `1px solid ${colours.BORDER_COLOUR}`,
         margin: '0.25rem 0',
         color: '#FFFFFF',
+        display: 'flex',
+        flexDirection: 'row',
+        flexWrap: 'nowrap',
+        alignItems: 'center',
     },
     [todoItemTypes.POMODORO]: {
         backgroundColor: colours.POMODORO_BACKGROUND,
@@ -26,6 +30,21 @@ const todoListItemStyles: styleMapProperties = {
     },
     H3: globalStyles.H3,
     currentItem: {},
+    taskContainer: {
+        flexGrow: 1,
+    },
+    timeContainer: {
+        flexBasis: '4rem',
+        display: 'flex',
+        flexDirection: 'column',
+        textAlign: 'center',
+    },
+    deleteContainer: {
+        flexBasis: '2rem',
+    },
+    remainingTime: {
+        fontSize: '1.5rem',
+    },
 };
 
 export default StyleSheet.create(todoListItemStyles);

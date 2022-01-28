@@ -31,20 +31,20 @@ const TodoListItem = ({
             )}
             id={id}
         >
-            <span id={`${id}-description`}>
+            <span className={css(todoListItemStyles.taskContainer)} id={`${id}-description`}>
                 <h3 className={css(todoListItemStyles.H3)}>{todoItem.title}</h3>
                 <p>{todoItem.description}</p>
             </span>
-            <span id={`${id}-time`}>
-                <span>{remainingTimeMins}</span>
+            <span className={css(todoListItemStyles.timeContainer)} id={`${id}-time`}>
+                <span className={css(todoListItemStyles.remainingTime)}>{remainingTimeMins}</span>
                 <span>mins</span>
             </span>
+            <span className={css(todoListItemStyles.deleteContainer)} id={`${id}-delete`}>
             {deleteAction && todoItem.itemType === todoItemTypes.POMODORO &&
-                <span id={`${id}-delete`}>
-                    <ControlButton onClick={deleteAction} aria-label="Delete">
-                        <MdDelete />
-                    </ControlButton>
-                </span>}
+                <ControlButton onClick={deleteAction} aria-label="Delete">
+                    <MdDelete />
+                </ControlButton>}
+            </span>
         </div>
     );
 };
