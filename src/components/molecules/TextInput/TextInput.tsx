@@ -22,7 +22,10 @@ const TextInput: React.FC<
     );
 
     return (
-        <div id={`${props.id}-input-container`} className={css(textInputStyles.container)}>
+        <div
+            id={`${props.id}-input-container`}
+            className={css(textInputStyles.container)}
+        >
             <div className={css(textInputStyles.inputContainer)}>
                 {!!label && (
                     <label
@@ -33,10 +36,21 @@ const TextInput: React.FC<
                         {label}
                     </label>
                 )}
-                <input {...field} {...props} id={`${props.id}-input`} className={inputClassName} />
+                <input
+                    {...field}
+                    {...props}
+                    id={`${props.id}-input`}
+                    className={inputClassName}
+                    aria-errormessage={
+                        !isInputValid ? `${props.id}-input-error` : undefined
+                    }
+                />
             </div>
             {!isInputValid && (
-                <span id={`${props.id}-input-error`} className={css(textInputStyles.validationError)}>
+                <span
+                    id={`${props.id}-input-error`}
+                    className={css(textInputStyles.validationError)}
+                >
                     {meta.error}
                 </span>
             )}

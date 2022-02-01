@@ -42,20 +42,29 @@ const TodoItemForm = ({ onSubmit }: ITodoItemForm) => {
     }
 
     return (
-        <Formik
-            initialValues={initialValues}
-            validationSchema={Yup.object().shape(validation)}
-            onSubmit={onSubmit}
-        >
-            <Form id="todoList-todoForm" className={css(todoItemFormStyles.todoFormContainer)}>
-                <h2 id="todoList-todoForm-heading" className={css(todoItemFormStyles.H2)}>
-                    Add a new 'to do' item
-                </h2>
-                <TextInput {...createPomodoroFormFields.title.props} />
-                <TextInput {...createPomodoroFormFields.description.props} />
-                <FormButton buttonType={buttonTypes.ADD_BUTTON} />
-            </Form>
-        </Formik>
+        <>
+            <h1
+                id="todoList-todoForm-heading"
+                className={css(todoItemFormStyles.heading)}
+            >
+                Add a new 'to do' item
+            </h1>
+            <Formik
+                initialValues={initialValues}
+                validationSchema={Yup.object().shape(validation)}
+                onSubmit={onSubmit}
+            >
+                <Form id="todoList-todoForm">
+                    <div className={css(todoItemFormStyles.todoFormContainer)}>
+                        <TextInput {...createPomodoroFormFields.title.props} />
+                        <TextInput
+                            {...createPomodoroFormFields.description.props}
+                        />
+                    </div>
+                    <FormButton buttonType={buttonTypes.ADD_BUTTON} />
+                </Form>
+            </Formik>
+        </>
     );
 };
 

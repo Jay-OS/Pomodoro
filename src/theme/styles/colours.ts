@@ -3,7 +3,7 @@ const colours: { [property: string]: string } = {
     BRAND_SECONDARY: '#706962',
 
     ERROR_COLOUR: '#C90007',
-    ERROR_BACKGROUND: '#FFCFD1',
+    ERROR_BACKGROUND: '#FFE5E6',
 
     BORDER_COLOUR: '#B3AAA1',
 

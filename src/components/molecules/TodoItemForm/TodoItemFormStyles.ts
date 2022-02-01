@@ -10,8 +10,9 @@ const todoItemFormStyles: styleMapProperties = {
     todoFormContainer: {
         ...utils.CONTAINER_STYLES,
         backgroundColor: colours.GREY_BACKGROUND,
+        marginBottom: '0.5rem',
     },
-    H2: globalStyles.H2,
+    heading: globalStyles.H2,
 };
 
 export default StyleSheet.create(todoItemFormStyles);

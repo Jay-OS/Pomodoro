@@ -9,11 +9,9 @@ import TodoItemForm from '../TodoItemForm';
 
 import addTodoItemStyles from './AddTodoItemStyles';
 
-Modal.setAppElement('#root');
-
 interface AddTodoItemProps {
     screenSizeDesc: screenSize;
-};
+}
 
 const AddTodoItem = ({ screenSizeDesc }: AddTodoItemProps) => {
     const [modalIsOpen, setIsOpen] = useState(false);
@@ -53,12 +51,18 @@ const AddTodoItem = ({ screenSizeDesc }: AddTodoItemProps) => {
     };
 
     return (
-        <div className={css(addTodoItemStyles.addTodoContainer)} id="addTodoItem">
+        <div
+            className={css(addTodoItemStyles.addTodoContainer)}
+            id="addTodoItem"
+        >
             <Modal
                 id="addTodoItem-modal"
                 isOpen={modalIsOpen}
                 onRequestClose={closeModal}
                 style={modalStyles}
+                aria={{
+                    labelledby: 'todoList-todoForm-heading',
+                }}
             >
                 <TodoItemForm />
             </Modal>
@@ -68,7 +72,10 @@ const AddTodoItem = ({ screenSizeDesc }: AddTodoItemProps) => {
                 onClick={openModal}
                 aria-labelledby="addTodoButton-text"
             >
-                <MdPlaylistAdd id="addTodoButton-icon" className={css(addTodoItemStyles.addTodoButtonIcon)} />
+                <MdPlaylistAdd
+                    id="addTodoButton-icon"
+                    className={css(addTodoItemStyles.addTodoButtonIcon)}
+                />
                 <span
                     id="addTodoButton-text"
                     className={css(addTodoItemStyles.addTodoButtonText)}
