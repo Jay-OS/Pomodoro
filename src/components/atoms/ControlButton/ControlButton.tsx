@@ -5,24 +5,35 @@ import { controlButtonType, controlButtonSize } from './ControlButtonEnums';
 
 import controlButtonStyles from './ControlButtonStyles';
 
-interface ControlButtonProps {
+export interface ControlButtonProps {
     id?: string;
-    onClick: () => void;
+    title?: string;
+    onClick: React.MouseEventHandler<HTMLButtonElement>;
     disabled?: boolean;
     ['aria-label']: string;
     buttonType: controlButtonType;
     buttonSize: controlButtonSize;
 };
 
-const ControlButton: React.FC<ControlButtonProps> = (props) => (
+const ControlButton: React.FC<ControlButtonProps> = ({
+    id,
+    title,
+    onClick,
+    disabled,
+    'aria-label': ariaLabel,
+    buttonType,
+    buttonSize,
+    children
+}) => (
     <button
-        id={props.id}
-        className={css(controlButtonStyles.controlButton, controlButtonStyles[props.buttonType], controlButtonStyles[props.buttonSize])}
-        disabled={props.disabled}
-        onClick={props.onClick}
-        aria-label={props['aria-label']}
+        id={id}
+        title={title}
+        className={css(controlButtonStyles.controlButton, controlButtonStyles[buttonType], controlButtonStyles[buttonSize])}
+        disabled={disabled}
+        onClick={onClick}
+        aria-label={ariaLabel}
     >
-        {props.children}
+        {children}
     </button>
 );
 

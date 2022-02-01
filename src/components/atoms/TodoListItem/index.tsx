@@ -46,7 +46,7 @@ const TodoListItemController = ({ todoItemIndex, id }: ITodoListItemController) 
         setCanBeDeleted(canBeDeleted);
     }, [isCurrentItem, todoItem.id, todoItem.isComplete, todoItem.itemType, timerState.currentTimer.hasStarted]);
 
-    const deleteAction = () => todoListContext.deleteItem(todoItem.id);
+    const deleteAction: React.MouseEventHandler<HTMLButtonElement> = () => todoListContext.deleteItem(todoItem.id);
 
     const remainingTimeMins = isCurrentItem
         ? itemDuration - currentTimerMinutes

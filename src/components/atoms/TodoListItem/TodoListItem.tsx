@@ -13,7 +13,7 @@ interface ITodoListItem {
     remainingTimeMins: number;
     isCurrentItem: boolean;
     id?: string;
-    deleteAction?: () => void;
+    deleteAction?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 const TodoListItem = ({
@@ -43,8 +43,10 @@ const TodoListItem = ({
             <span className={css(todoListItemStyles.deleteContainer)} id={`${id}-delete`}>
             {deleteAction && todoItem.itemType === todoItemTypes.POMODORO &&
                 <ControlButton
+                    id={`${id}-delete-button`}
                     onClick={deleteAction}
                     aria-label="Delete"
+                    title="Delete item"
                     buttonType={controlButtonType.REVERSED}
                     buttonSize={controlButtonSize.SMALL}
                 >

@@ -8,7 +8,7 @@ interface ITimerControls {
     enableControls: boolean;
     hasStarted: boolean;
     isPaused: boolean;
-    toggleTimerPause: () => void;
+    toggleTimerPause: React.MouseEventHandler<HTMLButtonElement>;
     startTimer: () => void;
 };
 

@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ControlButton . . . Matches snapshot 1`] = `
+<div>
+  <button
+    aria-label="Button label"
+    class="controlButton_ktbe5f-o_O-controlPrimary_1on53jx-o_O-controlLarge_zmmh0y"
+    id="button-id"
+    title="Button title"
+  >
+    Test
+  </button>
+</div>
+`;
