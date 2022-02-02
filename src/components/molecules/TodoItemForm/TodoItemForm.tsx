@@ -2,6 +2,7 @@ import React from 'react';
 import { Formik, Form, FormikHelpers } from 'formik';
 import { css } from 'aphrodite/no-important';
 import * as Yup from 'yup';
+import { MdPlaylistAddCheck } from 'react-icons/md';
 
 import TextInput from '../TextInput';
 import createPomodoroFormFields, {
@@ -18,9 +19,10 @@ interface ITodoItemForm {
         values: PomodoroFormFieldValues,
         helpers: FormikHelpers<PomodoroFormFieldValues>
     ) => void;
+    showSaveSuccess: boolean;
 }
 
-const TodoItemForm = ({ onSubmit }: ITodoItemForm) => {
+const TodoItemForm = ({ onSubmit, showSaveSuccess }: ITodoItemForm) => {
     const initialValues = {
         [PomodoroFormFieldNames.POMODORO_TITLE]: '',
         [PomodoroFormFieldNames.POMODORO_DESCRIPTION]: '',
@@ -55,13 +57,37 @@ const TodoItemForm = ({ onSubmit }: ITodoItemForm) => {
                 onSubmit={onSubmit}
             >
                 <Form id="todoList-todoForm">
-                    <div className={css(todoItemFormStyles.todoFormContainer)}>
-                        <TextInput {...createPomodoroFormFields.title.props} />
+                    <div
+                        id="todoList-todoForm-inputs"
+                        className={css(todoItemFormStyles.todoFormContainer)}
+                    >
+                        <TextInput
+                            {...createPomodoroFormFields.title.props}
+                            disabled={showSaveSuccess}
+                        />
                         <TextInput
                             {...createPomodoroFormFields.description.props}
+                            disabled={showSaveSuccess}
                         />
                     </div>
-                    <FormButton buttonType={buttonTypes.ADD_BUTTON} />
+                    <div
+                        className={css(todoItemFormStyles.submitArea)}
+                        id="todoList-todoForm-submit"
+                    >
+                        <MdPlaylistAddCheck
+                            id="todoList-todoForm-success-icon"
+                            className={css(
+                                todoItemFormStyles.successIcon,
+                                showSaveSuccess
+                                    ? todoItemFormStyles.successIconVisible
+                                    : undefined
+                            )}
+                        />
+                        <FormButton
+                            buttonType={buttonTypes.ADD_BUTTON}
+                            disabled={showSaveSuccess}
+                        />
+                    </div>
                 </Form>
             </Formik>
         </>

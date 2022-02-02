@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { FormikHelpers } from 'formik';
 
 import TodoItemForm from './TodoItemForm';
@@ -9,16 +9,25 @@ import { PomodoroFormFieldValues } from '../../../constants/forms/formFields/cre
 
 const TodoItemFormController = () => {
     const todoListState = useContext(TodoListStateContext);
+    const [showSaveSuccess, setShowSaveSuccess] = useState<boolean>(false);
 
     const onSubmit = (
         values: PomodoroFormFieldValues,
         helpers: FormikHelpers<PomodoroFormFieldValues>
     ) => {
         todoListState.addItem(values);
-        helpers.resetForm();
+        setShowSaveSuccess(true);
+        setTimeout(() => onSaveComplete(helpers.resetForm), 1000);
     };
 
-    return <TodoItemForm onSubmit={onSubmit} />;
+    const onSaveComplete = (resetForm: () => void) => {
+        setShowSaveSuccess(false);
+        resetForm();
+    };
+
+    return (
+        <TodoItemForm onSubmit={onSubmit} showSaveSuccess={showSaveSuccess} />
+    );
 };
 
 export default TodoItemFormController;

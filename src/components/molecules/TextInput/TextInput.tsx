@@ -41,6 +41,7 @@ const TextInput: React.FC<
                     {...props}
                     id={`${props.id}-input`}
                     className={inputClassName}
+                    disabled={props.disabled}
                     aria-errormessage={
                         !isInputValid ? `${props.id}-input-error` : undefined
                     }

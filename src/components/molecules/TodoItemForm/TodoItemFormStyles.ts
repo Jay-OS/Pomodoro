@@ -13,6 +13,22 @@ const todoItemFormStyles: styleMapProperties = {
         marginBottom: '0.5rem',
     },
     heading: globalStyles.H2,
+    successIcon: {
+        fontSize: '2.5rem',
+        lineHeight: '2.5rem',
+        marginRight: '0.5rem',
+        color: '#2E973A',
+        transition: 'opacity .25s ease-in-out',
+        opacity: 0,
+    },
+    successIconVisible: {
+        opacity: 1,
+    },
+    submitArea: {
+        display: 'flex',
+        alignContent: 'center',
+        justifyContent: 'flex-end',
+    },
 };
 
 export default StyleSheet.create(todoItemFormStyles);
