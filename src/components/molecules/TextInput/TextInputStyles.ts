@@ -3,6 +3,7 @@ import { StyleSheet } from 'aphrodite/no-important';
 import colours from '../../../theme/styles/colours';
 import forms from '../../../theme/styles/forms';
 import responsiveBreakpoints from '../../../theme/styles/responsiveBreakpoints';
+import utils from '../../../theme/styles/utils';
 
 import { styleMapProperties } from '../../../theme/styles/objectMaps';
 
@@ -47,6 +48,9 @@ const textInputStyles: styleMapProperties = {
         display: 'block',
         width: '100%',
         ...forms.VALIDATION_ERROR,
+    },
+    hidden: {
+        ...utils.HIDDEN,
     },
 };
 

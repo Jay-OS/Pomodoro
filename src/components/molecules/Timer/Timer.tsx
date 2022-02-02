@@ -11,13 +11,20 @@ interface ITimer {
     minutesAndSeconds: MinutesAndSecondsString;
 }
 
-const Timer = ({
-    minutesAndSeconds,
-}: ITimer) => (
-    <section id="timer" aria-labelledby="timer-heading" className={css(timerStyles.timerContainer)}>
-        <h2 id="timer-heading" className={css(timerStyles.hidden)}>Current timer</h2>
+const Timer = ({ minutesAndSeconds }: ITimer) => (
+    <section
+        id="timer"
+        aria-labelledby="timer-heading"
+        className={css(timerStyles.timerContainer)}
+    >
+        <h2 id="timer-heading" className={css(timerStyles.hidden)}>
+            Current timer
+        </h2>
         <span
             id="timer-display"
+            role="timer"
+            aria-atomic={true}
+            aria-live="polite"
             className={css(
                 timerStyles.timerContainerItem,
                 timerStyles.timerDisplay

@@ -15,9 +15,16 @@ const utils: styleMapProperties = {
         whiteSpace: 'nowrap',
     },
     HIDDEN: {
+        border: 0,
+        clip: 'rect(0px, 0px, 0px, 0px)',
+        clipPath: 'inset(50%)',
+        height: '1px',
+        margin: '0px -1px -1px 0px',
+        overflow: 'hidden',
+        padding: 0,
         position: 'absolute',
-        top: '-9999px',
-        left: '-9999px',
+        width: '1px',
+        whiteSpace: 'nowrap',
     },
     CONTAINER_OVERFLOW: {
         overflowX: 'hidden',

@@ -1,58 +1,82 @@
 import * as React from 'react';
 import { css } from 'aphrodite/no-important';
-import { FieldHookConfig, useField } from 'formik';
+import { FieldInputProps } from 'formik';
+import { useTextField } from '@react-aria/textfield';
 
 import textInputStyles from './TextInputStyles';
 
-type TextInputProps = {
+interface TextInputProps {
+    id?: string;
+    name?: string;
+    disabled?: boolean;
+    placeholder?: string;
+    type?: string;
     label?: string;
-};
+    isValid: boolean;
+    field: FieldInputProps<string | number>;
+    error?: string;
+}
 
-const TextInput: React.FC<
-    TextInputProps &
-        React.HTMLProps<HTMLInputElement> &
-        FieldHookConfig<string | number>
-> = ({ label, ...props }) => {
-    const [field, meta] = useField(props);
-    const isInputValid = !meta.touched || !meta.error;
-
+const TextInput = ({
+    id,
+    name,
+    disabled,
+    placeholder,
+    type,
+    label,
+    isValid,
+    field,
+    error,
+}: TextInputProps) => {
     const inputClassName = css(
         textInputStyles.input,
-        !isInputValid && textInputStyles.invalidInput
+        !isValid && textInputStyles.invalidInput
     );
+
+    const fieldProps = {
+        name,
+        id: `${id}-input`,
+        placeholder: placeholder,
+        type: type,
+    };
+
+    const inputRef = React.useRef<HTMLInputElement>(null);
+    const { labelProps, inputProps, descriptionProps, errorMessageProps } =
+        useTextField(fieldProps, inputRef);
 
     return (
         <div
-            id={`${props.id}-input-container`}
+            id={`${id}-input-container`}
             className={css(textInputStyles.container)}
         >
             <div className={css(textInputStyles.inputContainer)}>
                 {!!label && (
                     <label
-                        id={`${props.id}-input-label`}
-                        htmlFor={props.id || props.name}
+                        {...labelProps}
+                        htmlFor={`${id}-input`}
                         className={css(textInputStyles.label)}
                     >
                         {label}
                     </label>
                 )}
                 <input
+                    {...inputProps}
                     {...field}
-                    {...props}
-                    id={`${props.id}-input`}
+                    aria-invalid={isValid ? undefined : true}
                     className={inputClassName}
-                    disabled={props.disabled}
-                    aria-errormessage={
-                        !isInputValid ? `${props.id}-input-error` : undefined
-                    }
+                    disabled={disabled}
+                    ref={inputRef}
                 />
             </div>
-            {!isInputValid && (
+            <span {...descriptionProps} className={css(textInputStyles.hidden)}>
+                {placeholder}
+            </span>
+            {!isValid && (
                 <span
-                    id={`${props.id}-input-error`}
+                    {...errorMessageProps}
                     className={css(textInputStyles.validationError)}
                 >
-                    {meta.error}
+                    {error}
                 </span>
             )}
         </div>
