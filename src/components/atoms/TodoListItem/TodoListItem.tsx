@@ -2,9 +2,15 @@ import React from 'react';
 import { css } from 'aphrodite/no-important';
 import { MdDelete } from 'react-icons/md';
 
-import ControlButton, { controlButtonType, controlButtonSize } from '../ControlButton';
+import ControlButton, {
+    controlButtonType,
+    controlButtonSize,
+} from '../ControlButton';
 
-import { todoItemShape, todoItemTypes } from '../../../domain/entities/todoItems';
+import {
+    todoItemShape,
+    todoItemTypes,
+} from '../../../domain/entities/todoItems';
 
 import todoListItemStyles from './TodoListItemStyles';
 
@@ -31,27 +37,40 @@ const TodoListItem = ({
                 isCurrentItem && todoListItemStyles.currentItem
             )}
             id={id}
+            role="listitem"
         >
-            <span className={css(todoListItemStyles.taskContainer)} id={`${id}-description`}>
+            <span
+                className={css(todoListItemStyles.taskContainer)}
+                id={`${id}-description`}
+            >
                 <h3 className={css(todoListItemStyles.H3)}>{todoItem.title}</h3>
                 <p>{todoItem.description}</p>
             </span>
-            <span className={css(todoListItemStyles.timeContainer)} id={`${id}-time`}>
-                <span className={css(todoListItemStyles.remainingTime)}>{remainingTimeMins}</span>
+            <span
+                className={css(todoListItemStyles.timeContainer)}
+                id={`${id}-time`}
+            >
+                <span className={css(todoListItemStyles.remainingTime)}>
+                    {remainingTimeMins}
+                </span>
                 <span>mins</span>
             </span>
-            <span className={css(todoListItemStyles.deleteContainer)} id={`${id}-delete`}>
-            {deleteAction && todoItem.itemType === todoItemTypes.POMODORO &&
-                <ControlButton
-                    id={`${id}-delete-button`}
-                    onClick={deleteAction}
-                    aria-label="Delete"
-                    title="Delete item"
-                    buttonType={controlButtonType.REVERSED}
-                    buttonSize={controlButtonSize.SMALL}
-                >
-                    <MdDelete id={`${id}-delete-icon`} />
-                </ControlButton>}
+            <span
+                className={css(todoListItemStyles.deleteContainer)}
+                id={`${id}-delete`}
+            >
+                {deleteAction && todoItem.itemType === todoItemTypes.POMODORO && (
+                    <ControlButton
+                        id={`${id}-delete-button`}
+                        onClick={deleteAction}
+                        aria-label="Delete"
+                        title="Delete item"
+                        buttonType={controlButtonType.REVERSED}
+                        buttonSize={controlButtonSize.SMALL}
+                    >
+                        <MdDelete id={`${id}-delete-icon`} />
+                    </ControlButton>
+                )}
             </span>
         </div>
     );

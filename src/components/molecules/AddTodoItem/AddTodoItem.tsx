@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Modal from 'react-modal';
 import { MdPlaylistAdd } from 'react-icons/md';
 import { css } from 'aphrodite/no-important';
+import { useButton } from '@react-aria/button';
 
 import { screenSize } from '../../../domain/contexts/screenSizeState';
 
@@ -50,6 +51,14 @@ const AddTodoItem = ({ screenSizeDesc }: AddTodoItemProps) => {
         },
     };
 
+    const buttonRef = React.useRef<HTMLButtonElement>(null);
+    const btnProps = {
+        id: 'addTodoButton',
+        onClick: openModal,
+        'aria-labelledby': 'addTodoButton-text',
+    };
+    const { buttonProps } = useButton(btnProps, buttonRef);
+
     return (
         <div
             className={css(addTodoItemStyles.addTodoContainer)}
@@ -67,10 +76,9 @@ const AddTodoItem = ({ screenSizeDesc }: AddTodoItemProps) => {
                 <TodoItemForm />
             </Modal>
             <button
+                {...buttonProps}
                 className={css(addTodoItemStyles.addTodoButton)}
-                id="addTodoButton"
-                onClick={openModal}
-                aria-labelledby="addTodoButton-text"
+                ref={buttonRef}
             >
                 <MdPlaylistAdd
                     id="addTodoButton-icon"

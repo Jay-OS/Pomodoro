@@ -16,6 +16,7 @@ const TodoListItems = ({ listItems }: ITodoListItems) => {
         <div
             className={css(todoListItemsStyles.todoListItemsContainer)}
             id="todoList-items"
+            role="list"
         >
             {!!listItems && listItems.length > 0 ? (
                 listItems.map((value, index) => (

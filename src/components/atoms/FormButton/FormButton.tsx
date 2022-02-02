@@ -1,36 +1,34 @@
 import * as React from 'react';
 import { css } from 'aphrodite/no-important';
-import { useFormikContext } from 'formik';
+import { useButton } from '@react-aria/button';
 
 import { buttonTypes, buttons } from '../../../constants/forms/buttons';
 
 import formButtonStyles from './FormButtonStyles';
 
-interface FormButtonProps {
+export interface FormButtonProps {
     buttonType: buttonTypes;
+    disabled: boolean;
 }
 
-const FormButton = (props: FormButtonProps) => {
-    const { errors, touched } = useFormikContext();
-
-    const errorKeys = Object.keys(errors);
-    const invalidFieldsHaveBeenTouched =
-        !!errorKeys.length &&
-        errorKeys.some((key) => touched.hasOwnProperty(key));
+const FormButton = ({ buttonType, disabled }: FormButtonProps) => {
+    const buttonRef = React.useRef<HTMLButtonElement>(null);
+    const btnProps = {
+        ...buttons[buttonType]?.props,
+    };
+    const { buttonProps } = useButton(btnProps, buttonRef);
 
     return (
         <button
-            {...buttons[props.buttonType]?.props}
-            disabled={
-                invalidFieldsHaveBeenTouched &&
-                props.buttonType !== buttonTypes.RESET_BUTTON
-            }
+            {...buttonProps}
             className={css(
                 formButtonStyles.button,
-                formButtonStyles[props.buttonType]
+                formButtonStyles[buttonType]
             )}
+            disabled={disabled}
+            ref={buttonRef}
         >
-            {buttons[props.buttonType]?.label}
+            {buttons[buttonType]?.label}
         </button>
     );
 };

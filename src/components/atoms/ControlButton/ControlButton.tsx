@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { css } from 'aphrodite/no-important';
+import { useButton } from '@react-aria/button';
 
 import { controlButtonType, controlButtonSize } from './ControlButtonEnums';
 
@@ -13,7 +14,7 @@ export interface ControlButtonProps {
     ['aria-label']: string;
     buttonType: controlButtonType;
     buttonSize: controlButtonSize;
-};
+}
 
 const ControlButton: React.FC<ControlButtonProps> = ({
     id,
@@ -23,18 +24,31 @@ const ControlButton: React.FC<ControlButtonProps> = ({
     'aria-label': ariaLabel,
     buttonType,
     buttonSize,
-    children
-}) => (
-    <button
-        id={id}
-        title={title}
-        className={css(controlButtonStyles.controlButton, controlButtonStyles[buttonType], controlButtonStyles[buttonSize])}
-        disabled={disabled}
-        onClick={onClick}
-        aria-label={ariaLabel}
-    >
-        {children}
-    </button>
-);
+    children,
+}) => {
+    const buttonRef = React.useRef<HTMLButtonElement>(null);
+    const btnProps = {
+        id: id,
+        title: title,
+        disabled: disabled,
+        onClick: onClick,
+        'aria-label': ariaLabel,
+    };
+    const { buttonProps } = useButton(btnProps, buttonRef);
+
+    return (
+        <button
+            {...buttonProps}
+            className={css(
+                controlButtonStyles.controlButton,
+                controlButtonStyles[buttonType],
+                controlButtonStyles[buttonSize]
+            )}
+            ref={buttonRef}
+        >
+            {children}
+        </button>
+    );
+};
 
 export default ControlButton;
