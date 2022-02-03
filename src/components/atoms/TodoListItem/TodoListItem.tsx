@@ -66,7 +66,7 @@ const TodoListItem = ({
                         aria-label="Delete"
                         title="Delete item"
                         buttonType={controlButtonType.REVERSED}
-                        buttonSize={controlButtonSize.SMALL}
+                        buttonSize={controlButtonSize.MEDIUM}
                     >
                         <MdDelete id={`${id}-delete-icon`} />
                     </ControlButton>

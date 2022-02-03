@@ -2,6 +2,8 @@ import * as React from 'react';
 import { css } from 'aphrodite/no-important';
 import { useButton } from '@react-aria/button';
 
+import AddClassName from '../AddClassName';
+
 import { controlButtonType, controlButtonSize } from './ControlButtonEnums';
 
 import controlButtonStyles from './ControlButtonStyles';
@@ -46,7 +48,9 @@ const ControlButton: React.FC<ControlButtonProps> = ({
             )}
             ref={buttonRef}
         >
-            {children}
+            <AddClassName className={css(controlButtonStyles.verticalCenter)}>
+                {children}
+            </AddClassName>
         </button>
     );
 };

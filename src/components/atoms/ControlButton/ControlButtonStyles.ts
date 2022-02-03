@@ -32,15 +32,24 @@ const controlButtonStyles: styleMapProperties = {
     [controlButtonSize.LARGE]: {
         height: '2.7rem',
         width: '2.7rem',
-        fontSize: '1.6rem',
-        lineHeight: '1.5rem',
+        fontSize: '1.8rem',
+        lineHeight: '1.8rem',
     },
-    [controlButtonSize.SMALL]: {
+    [controlButtonSize.MEDIUM]: {
         height: '1.8rem',
         width: '1.8rem',
         fontSize: '1rem',
         lineHeight: '1rem',
     },
-}
+    [controlButtonSize.SMALL]: {
+        height: '1.2rem',
+        width: '1.2rem',
+        fontSize: '0.8rem',
+        lineHeight: '0.8rem',
+    },
+    verticalCenter: {
+        verticalAlign: 'middle',
+    },
+};
 
 export default StyleSheet.create(controlButtonStyles);
