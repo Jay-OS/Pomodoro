@@ -76,6 +76,10 @@ const TodoItemForm = ({ onSubmit, showSaveSuccess }: ITodoItemForm) => {
                     >
                         <MdPlaylistAddCheck
                             id="todoList-todoForm-success-icon"
+                            aria-label="To do item successfully added."
+                            aria-hidden={!showSaveSuccess}
+                            aria-live="assertive"
+                            role="status"
                             className={css(
                                 todoItemFormStyles.successIcon,
                                 showSaveSuccess

@@ -12,13 +12,15 @@ interface ITodoListItems {
 }
 
 const TodoListItems = ({ listItems }: ITodoListItems) => {
+    const listItemsExist = !!listItems && listItems.length > 0;
     return (
         <div
             className={css(todoListItemsStyles.todoListItemsContainer)}
             id="todoList-items"
+            aria-live="polite"
             role="list"
         >
-            {!!listItems && listItems.length > 0 ? (
+            {listItemsExist ? (
                 listItems.map((value, index) => (
                     <TodoListItem
                         id={`todoList-todoListItem${index}`}
@@ -27,7 +29,7 @@ const TodoListItems = ({ listItems }: ITodoListItems) => {
                     />
                 ))
             ) : (
-                <p id="todoList-noTodos">
+                <p role="listitem" id="todoList-noTodos">
                     You haven't planned any 'to do' items yet.
                 </p>
             )}

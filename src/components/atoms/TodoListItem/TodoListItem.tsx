@@ -38,17 +38,22 @@ const TodoListItem = ({
             )}
             id={id}
             role="listitem"
+            aria-labelledby={`${id}-title`}
+            aria-describedby={`${id}-description`}
         >
             <span
                 className={css(todoListItemStyles.taskContainer)}
-                id={`${id}-description`}
+                id={`${id}-content`}
             >
-                <h3 className={css(todoListItemStyles.H3)}>{todoItem.title}</h3>
-                <p>{todoItem.description}</p>
+                <h3 className={css(todoListItemStyles.H3)} id={`${id}-title`}>
+                    {todoItem.title}
+                </h3>
+                <p id={`${id}-description`}>{todoItem.description}</p>
             </span>
             <span
                 className={css(todoListItemStyles.timeContainer)}
                 id={`${id}-time`}
+                aria-atomic="true"
             >
                 <span className={css(todoListItemStyles.remainingTime)}>
                     {remainingTimeMins}
